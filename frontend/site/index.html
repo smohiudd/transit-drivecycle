@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://api.mapbox.com/mapbox-assembly/v0.24.0/assembly.min.css" rel="stylesheet">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css" rel="stylesheet" />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com"> 
+    <link href="https://fonts.googleapis.com/css2?family=Secular+One&display=swap" rel="stylesheet">
+    <title>Transit Drive Cycle Simulation</title>
+</head>
+
+<body>
+
+    <div class="content prose color-blue">
+
+
+        <div class="mt24">
+            <span class="txt-s txt-bold">Saadiq Mohiuddin <a href="https://saadiqm.com/">www.saadiqm.com</a></span><br/>
+            <h2 class="title">Transit Drive Cycle Simulation Hello</h1>
+            <span class='txt-h4'>A tool for simulating sample drive cycles for bus routes using data from <a href="https://www.transit.land/">Transitland Feed Registry</a> and <a href="https://github.com/valhalla/valhalla">Valhalla OSM routing engine</a>.
+            The profiles are generated with a stochastic trajectory planning algorithm using bus stop and intersection locations. Read more about simulating a bus drive cycle <a href="https://saadiqm.com/2020/12/19/transit-drivecycle.html">here</a>.</span> 
+
+        </div>
+
+        <div class="mb12 mt36">
+
+            <div class='flex-parent mb12'>
+                <div class='flex-child flex-child--no-shrink w120 txt-h6 txt-bold' >City</div>
+                <div class='flex-child flex-child--grow'>
+
+                    <div class='select-container'>
+                        <select class='select w240 block select--border-grey' name="operator" id="operator">
+                            <option value="o-c3nf-calgarytransit">Calgary</option>
+                            <option value="o-c3x-edmontontransitsystem">Edmonton</option>
+                            <option value="o-c28-translink">Vancouver</option>
+                            <option value="o-dpz8-ttc">Toronto</option>
+                            <option value="o-f25d-socitdetransportdemontral">Montreal</option>
+                            
+                        </select>
+                        <div class='select-arrow'></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class='flex-parent mb12'>
+                <div class='flex-child flex-child--no-shrink w120 txt-h6 txt-bold'>Route</div>
+                <div class='flex-child flex-child--grow'>
+
+                    <div class='select-container'>
+                        <select class='select w360 block select--border-grey' name="routes" id="routes"></select>
+                        <div class='select-arrow'></div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class='flex-parent mb12'>
+                <div class='flex-child flex-child--no-shrink w120 txt-h6 txt-bold'>Route Pattern</div>
+                <div class='flex-child flex-child--grow'>
+
+                    <div class='select-container' >
+                        <select class='select w240 block select--border-grey' name="patterns" id="patterns"¬></select>
+                        <div class='select-arrow'></div>
+                    </div>
+
+                </div>
+            </div>
+        
+        
+            <div class='inline-block pt3 pl6'> 
+                <div id="is_loading" class='loading loading--s'></div>
+            </div>
+
+            <div id="error" class="none"><span class="txt-s color-red txt-bold mt6 mb6">Could not generate drive cycle for this route pattern</span></div>
+
+        </div>
+
+        <div id="map" class="mb36"></div>
+
+
+
+        
+
+        <div class='flex-parent flex-parent--center-main'>
+            <div class='flex-child'>
+                <div id="titles" class="none mt12">
+                    <h4 class="title">Velocity - Time</h4>
+                </div>
+            </div>
+        </div>
+      
+        <div id="container1" class="svg-container"></div>
+
+        <div class='flex-parent flex-parent--center-main'>
+            <div class='flex-child'>
+                <div id="titles" class="none mt12">
+                    <h4 class="title">Distance - Time</h4>
+                </div>
+            </div>
+        </div> 
+        <div id="container2" class="svg-container"></div>
+
+        <div class='flex-parent flex-parent--center-main'>
+            <div class='flex-child'>
+                <div id="titles" class="none mt12">
+                    <h4 class="title">Velocity - Distance</h4>
+                </div>
+            </div>
+        </div>
+        <div id="container3" class="svg-container"></div>
+
+        <div class='flex-parent flex-parent--center-main'>
+            <div class='flex-child'>
+                <div id="titles" class="none mt12">
+                    <h4 class="title">Elevation</h4>
+                </div>
+            </div>
+        </div>
+        <div id="container4" class="svg-container"></div>
+
+    </div>
+
+
+    <script src="https://d3js.org/d3.v5.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@5/turf.min.js"></script>
+    <script async defer src="https://api.mapbox.com/mapbox-assembly/v0.24.0/assembly.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+   
+
+</body>
+
+</html>
