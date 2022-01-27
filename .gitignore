@@ -1,5 +1,5 @@
-elevation_data
-valhalla_tiles
+elevation_data/
+valhalla_tiles/
 
 *.tar
 *.pbf
