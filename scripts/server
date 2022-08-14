@@ -28,5 +28,5 @@ if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
         docker-compose \
             -f docker-compose.yml \
             run --rm --service-ports \
-            frontend-dev
+            frontend-react
 fi

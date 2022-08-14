@@ -22,8 +22,8 @@ function responsivefy(svg) {
 
 
 mapboxgl.accessToken = 'pk.eyJ1Ijoic2FhZGlxbSIsImEiOiJjamJpMXcxa3AyMG9zMzNyNmdxNDlneGRvIn0.wjlI8r1S_-xxtq2d-W5qPA';
-const transitland_endpoint = 'https://b9d8625q6c.execute-api.us-east-1.amazonaws.com'
-// const transitland_endpoint = 'http://localhost:3000/'
+//const transitland_endpoint = 'https://b9d8625q6c.execute-api.us-east-1.amazonaws.com'
+const transitland_endpoint = 'http://localhost/'
 
 var map = new mapboxgl.Map({
     container: 'map', // container id
@@ -110,6 +110,7 @@ function get_data(url){
 
         d3.select("select#routes").html("")
         d3.select("select#patterns").html("")
+
         
         d3.select("select#routes").selectAll("option")
         .data(routes2)
@@ -120,6 +121,8 @@ function get_data(url){
     
         let selected_route = document.getElementById("routes").value
         let patterns2 = routes2.filter(x => x.onestop_id === selected_route)[0].route_stop_patterns
+
+        
     
         d3.select("select#patterns").selectAll("option")
         .data(patterns2)
@@ -137,6 +140,8 @@ function get_data(url){
             var selectedroute = d3.select(this).property('value')
     
             let patterns = routes2.filter(x => x.onestop_id === selectedroute)[0].route_stop_patterns
+
+            console.log(patterns)
     
             d3.select("select#patterns").html("")
     
@@ -169,8 +174,8 @@ function get_drive_cycle(pattern) {
         onestop_id:pattern
     }
 
-    const transitland = new URL('/dev/stops',transitland_endpoint)
-    const url = new URL('/dev/drivecycle',transitland_endpoint)
+    const transitland = new URL('/route',transitland_endpoint)
+    const url = new URL('/drivecycle',transitland_endpoint)
 
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
     Object.keys(params).forEach(key => transitland.searchParams.append(key, params[key]))
@@ -434,7 +439,7 @@ function get_operator(operator){
         const params = {
             operated_by:operator
         }
-        const url = new URL('/dev/routes',transitland_endpoint)
+        const url = new URL('/routes',transitland_endpoint)
         Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
 
         resolve(decodeURIComponent(url.href))

@@ -1,5 +1,13 @@
 elevation_data/
 valhalla_tiles/
+notebooks/
+database/
 
 *.tar
 *.pbf
+
+**/node_modules
+**/npm-debug.log
+build
+frontend/
+config.py

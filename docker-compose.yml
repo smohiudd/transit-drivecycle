@@ -1,5 +1,6 @@
 services:
   valhalla:
+    container_name: transit-drivecycle-valhalla
     image: transit-drivecycle-valhalla
     ports:
       - 8002:8002
@@ -17,6 +18,7 @@ services:
       - build_tar=True  # build an indexed tar file from the tile_dir for faster graph loading times
       - force_rebuild=True  # forces a rebuild of the routing tiles with "True"
   drivecycleapi:
+    container_name: transit-drivecycle-api
     image: transit-drivecycle-api
     ports:
       - 81:81
@@ -28,17 +30,49 @@ services:
     volumes:
       - ./drivecycleapi/app:/code/app
     command: "uvicorn app.main:app --host 0.0.0.0 --port 81 --reload"
-  frontend-dev:
-    image: frontend-dev
+  # frontend-dev:
+  #   container_name: frontend-dev
+  #   image: frontend-dev
+  #   ports:
+  #     - 80:80
+  #   build:
+  #     context: .
+  #     dockerfile: frontend/Dockerfile
+  #   depends_on:
+  #     - valhalla
+  #   volumes:
+  #     - ./frontend/site:/usr/share/nginx/html
+  #     - ./frontend/default.conf:/etc/nginx/conf.d/default.conf
+  frontend-react:
+    container_name: frontend-react
+    image: frontend-react
     ports:
-      - 80:80
+      - 3000:3000
     build:
       context: .
-      dockerfile: frontend/Dockerfile
+      target: development
+      dockerfile: frontend-react/Dockerfile-dev
     depends_on:
       - drivecycleapi
     volumes:
-      - ./frontend/site:/usr/share/nginx/html
+      - ./frontend-react/src:/app/src
+    
+#   database:
+#     container_name: transit-drivecycle-db
+#     image: transit-drivecycle-db
+#     build:
+#       context: .
+#       dockerfile: database/Dockerfile
+#     environment:
+#       - POSTGRES_USER=username
+#       - POSTGRES_PASSWORD=password
+#       - POSTGRES_DB=postgis
+#     ports:
+#       - "5433:5432"
+#     volumes:
+#       - transit-drivecycle-pgdata:/var/lib/postgresql/data
+# volumes:
+#   transit-drivecycle-pgdata:  
 
 networks:
   default:
