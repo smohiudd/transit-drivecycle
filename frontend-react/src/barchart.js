@@ -1,9 +1,9 @@
 import React from 'react';
 import * as d3 from "d3";
 
-var margin = { top: 20, right: 20, bottom: 100, left: 100 }
-    , width = 300
-    , height = 200
+var margin = { top: 20, right: 20, bottom: 40, left: 60 }
+    , width = 360
+    , height = 50
 
 
 export default class MyD3Component extends React.Component {
@@ -32,20 +32,24 @@ export default class MyD3Component extends React.Component {
 
     update() {
 
+        let x = this.props.x
+        let y = this.props.y
 
         this.svg.selectAll("*").remove();
 
         const xScale = d3.scaleLinear().range([0, width]);
         const yScale = d3.scaleLinear().range([height, 0]);
 
-        xScale.domain(d3.extent(this.props.data.data, d => d[0]));
-        yScale.domain(d3.extent(this.props.data.data, d => d[1]));
+        xScale.domain(d3.extent(this.props.data, d => d[x]));
+        yScale.domain(d3.extent(this.props.data, d => d[y]));
 
         const yaxis = d3.axisLeft()
-            .scale(yScale);
+            .scale(yScale)
+            .ticks(3);
 
         const xaxis = d3.axisBottom()
             .scale(xScale)
+            .ticks(5);
 
         this.svg.append("g")
             .attr("class", "axis")
@@ -56,29 +60,28 @@ export default class MyD3Component extends React.Component {
             .attr("class", "axis")
             .call(yaxis);
 
-
         this.svg.append("path")
-            .datum(this.props.data.data)
+            .datum(this.props.data)
             .attr("fill", "none")
             .attr("stroke", "#4096ff")
             .attr("stroke-width", 1.5)
             .attr("d", d3.line()
-                .x(function (d) { return xScale(d[0]) })
-                .y(function (d) { return yScale(d[1]) })
+                .x(function (d) { return xScale(d[x]) })
+                .y(function (d) { return yScale(d[y]) })
             )
 
 
         this.svg.append("text")
             .attr("text-anchor", "middle")  // this makes it easy to centre the text as the transform is applied to the anchor
-            .attr("transform", "translate(" + (width / 2) + "," + (height + 40) + ")")  // centre below axis
-            .text("Time (s)")
+            .attr("transform", "translate(" + (width / 2) + "," + (height + 37) + ")")  // centre below axis
+            .text(this.props.x_label)
             .style("font", "12px sans-serif")
 
         // Add the text label for Y Axis
         this.svg.append("text")
             .attr("text-anchor", "middle")  // this makes it easy to centre the text as the transform is applied to the anchor
-            .attr("transform", "translate(" + (0 - 50) + "," + (height / 2) + ")rotate(-90)")  // text is drawn off the screen top left, move down and out and rotate
-            .text("Speed (m/s)")
+            .attr("transform", "translate(" + (0 - 40) + "," + (height / 2) + ")rotate(-90)")  // text is drawn off the screen top left, move down and out and rotate
+            .text(this.props.y_label)
             .style("font", "12px sans-serif")
 
 

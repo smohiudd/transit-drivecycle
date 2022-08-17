@@ -1,5 +1,5 @@
 from typing import Optional
-from drivecycle import route, graph
+from drivecycle import route, graph, energy
 import numpy as np 
 import polyline
 import json
@@ -71,13 +71,7 @@ async def get_drivecycle(item: Item):
     edges = trace.json()["edges"]
 
     if len(edges)<10:
-        return {
-            "statusCode": 500,
-            "headers": headers,
-            "body": json.dumps({
-                    "Message" : "Server encountered an error."
-                })
-        }
+        raise HTTPException(status_code=500, detail="Server encountered an error.")
 
     data_ = []
 
@@ -111,7 +105,18 @@ async def get_drivecycle(item: Item):
 
     elevations =  height.json()["range_height"]
 
-    return {"data": drive_cycle.tolist(),"elv": elevations}
+    soc = energy.energy_model(trajectory,m=15000, area=8.5, capacity=555)
+
+    final = np.c_[drive_cycle, soc[:,4]]
+
+    return {
+        "data": final.tolist(),
+        "elv": elevations,
+        "dist": np.round(final[-1,2]/1000,2),
+        "time": np.round(final[-1,0]/60,2),
+        "avg_speed": np.round(np.average(final[:,1])*(3600/1000),2),
+        "soc": np.round(soc[-1,4],4)*100
+        }
 
 @app.get("/drivecycle/")
 def read_item(onestop_id: str=None):
@@ -153,13 +158,7 @@ def read_item(onestop_id: str=None):
     edges = trace.json()["edges"]
 
     if len(edges)<10:
-        return {
-            "statusCode": 500,
-            "headers": headers,
-            "body": json.dumps({
-                    "Message" : "Server encountered an error."
-                })
-        }
+        raise HTTPException(status_code=500, detail="Server encountered an error.")
 
     data_ = []
 

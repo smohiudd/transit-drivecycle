@@ -9,9 +9,14 @@ body {
 }
 
 .sidebar-container {
-    position:absolute;
-    width: 50vw;
-    height: 80%;
-    top:0;
-    right:0;
+    position: absolute;
+    width: 480px;
+    height: 90%;
+    top: 0;
+    right: 0;
+    box-shadow: 5px 5px 15px grey;
+}
+
+.hidden {
+    display: none;
 }
