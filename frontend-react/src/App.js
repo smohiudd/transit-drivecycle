@@ -15,18 +15,28 @@ export default class App extends React.PureComponent {
             drivecycle: null,
             elevation: null,
             soc: null,
+            soc_final: null,
             geom: null,
             drivecycle_error: null,
             toggle: true,
             distance: null,
             time: null,
             avg_speed: null,
+            battery_cap: 550,
+            aux: null,
+            mass: 10000,
+            gear_ratio: null,
+            wheel: null,
+            area: 8.0,
         };
         this.mapContainer = React.createRef();
 
         this.handleChangeRoute = this.handleChangeRoute.bind(this);
         this.handleChangePattern = this.handleChangePattern.bind(this);
         this.toggleState = this.toggleState.bind(this)
+        this.handleInputChange = this.handleInputChange.bind(this)
+
+        this.inputimer = null
     }
 
     componentDidMount() {
@@ -38,11 +48,15 @@ export default class App extends React.PureComponent {
         });
 
         let pattern_ = calgary_data.filter(x => x.route === this.state.route)[0].patterns[0]
-        let geojson_url = "http://localhost:81/route/?onestop_id=" + pattern_
+        this.setState({ pattern: pattern_ })
 
-        this.set_data(pattern_, false)
+        this.set_data(pattern_, false,true)
+        // this.set_energy()
 
         this.map.on('load', () => {
+
+            let geojson_url = "http://localhost:81/route/?onestop_id=" + pattern_
+
 
             this.map.addSource('Route', {
                 type: 'geojson',
@@ -66,7 +80,7 @@ export default class App extends React.PureComponent {
         })
     }
 
-    set_data(pattern, setdata = true) {
+    set_data(pattern, setdata = true, energy = false) {
         let url = "http://localhost:81/route/?onestop_id=" + pattern
         fetch(url)
             .then(res => res.json())
@@ -86,6 +100,9 @@ export default class App extends React.PureComponent {
                             },
                             body: JSON.stringify({
                                 geom: result,
+                                mass: this.state.mass,
+                                area: this.state.area,
+                                capacity: this.state.battery_cap,
                             })
                         })
                             .then(res => {
@@ -93,40 +110,82 @@ export default class App extends React.PureComponent {
                                 else return res.json();
                             })
                             .then(result => {
-                                this.setState({ 
-                                    drivecycle: result, 
-                                    distance: result.dist, 
-                                    time: result.time, 
+                                this.setState({
+                                    drivecycle: result,
+                                    distance: result.dist,
+                                    time: result.time,
                                     avg_speed: result.avg_speed,
-                                    soc: result.soc }, console.log(this.state.drivecycle))
+                                }, () => {
+                                    if (energy) this.set_energy()
+                                })
                             })
 
                     });
                 })
     }
 
+    set_energy() {
+        fetch('http://localhost:81/energy/', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                traj: this.state.drivecycle.data,
+                mass: this.state.mass,
+                area: this.state.area,
+                capacity: this.state.battery_cap,
+            })
+        })
+            .then(res => {
+                if (!res.ok) this.setState({ drivecycle_error: true });
+                else return res.json();
+            })
+            .then(result => {
+                this.setState({
+                    soc: result.soc,
+                    soc_final: result.soc_final
+                })
+            })
+    }
+
     handleChangeRoute(event) {
         let pattern_ = calgary_data.filter(x => x.route === event.target.value)[0].patterns[0]
         this.setState({ route: event.target.value, pattern: pattern_, drivecycle_error: false },
-            () => this.set_data(this.state.pattern, true));
+            () => this.set_data(this.state.pattern, true, true));
     }
 
     handleChangePattern(event) {
         this.setState({ pattern: event.target.value, drivecycle_error: false },
-            () => this.set_data(this.state.pattern, true));
+            () => this.set_data(this.state.pattern, true, true));
     }
 
     toggleState() {
-		this.setState({
-			toggle: !this.state.toggle
-		});
-	}
+        this.setState({
+            toggle: !this.state.toggle
+        });
+    }
+
+    handleInputChange(e) {
+        var duration = 800;
+        clearTimeout(this.inputimer);
+        this.inputimer = setTimeout(() => {
+            this.updateInputValue(e);
+        }, duration);
+    }
+
+    updateInputValue = (e) => {
+        this.setState({ [e.target.name]: e.target.value }, () => this.set_energy());
+    }
+
     render() {
 
         let charts;
+        let error;
 
-        if (this.state.drivecycle && !this.state.drivecycle_error) {
-            charts = <div className={this.state.toggle? 'hidden' : null}>
+        if (this.state.drivecycle && this.state.soc && !this.state.drivecycle_error) {
+            charts = <div>
                 <MyD3Component
                     data={this.state.drivecycle.data}
                     x={0}
@@ -142,9 +201,9 @@ export default class App extends React.PureComponent {
                     y_label={"Elevation (m)"}
                 />
                 <MyD3Component
-                    data={this.state.drivecycle.data}
+                    data={this.state.soc}
                     x={2}
-                    y={3}
+                    y={4}
                     x_label={"Distance (m)"}
                     y_label={"State of Charge (%)"}
                 />
@@ -154,7 +213,7 @@ export default class App extends React.PureComponent {
         }
 
         if (this.state.drivecycle_error) {
-            charts = <div>Error: Could not generate drivecycle.</div>
+            error = <div>Error: Could not generate drivecycle.</div>
         }
 
         return (
@@ -201,6 +260,8 @@ export default class App extends React.PureComponent {
                             </div>
                         </div>
 
+
+
                         <div class='grid'>
                             <div class='col w-1/3 txt-s'>Battery Capacity (kWh)</div>
                             <div class='col w-1/3 txt-s'>Vehicle Mass (kg)</div>
@@ -209,13 +270,13 @@ export default class App extends React.PureComponent {
 
                         <div class='grid grid--gut3 mb12'>
                             <div class='col w-1/3 txt-ms'>
-                                <input class='input' placeholder='550' />
+                                <input class='input' name="battery_cap" onChange={this.handleInputChange} placeholder='550' />
                             </div>
                             <div class='col w-1/3 txt-ms'>
-                                <input class='input' placeholder='15000' />
+                                <input class='input' name="mass" onChange={this.handleInputChange} placeholder='15000' />
                             </div>
                             <div class='col w-1/3 txt-ms'>
-                                <input class='input' placeholder='10' />
+                                <input class='input' name="aux" onChange={this.handleInputChange} placeholder='10' />
                             </div>
                         </div>
 
@@ -227,20 +288,20 @@ export default class App extends React.PureComponent {
 
                         <div class='grid grid--gut3 mb12'>
                             <div class='col w-1/3 txt-ms'>
-                                <input class='input' placeholder='5.0' />
+                                <input class='input' name="gear_ratio" onChange={this.handleInputChange} placeholder='5.0' />
                             </div>
                             <div class='col w-1/3 txt-ms'>
-                                <input class='input' placeholder='0.5' />
+                                <input class='input' name="wheel" onChange={this.handleInputChange} placeholder='0.5' />
                             </div>
                             <div class='col w-1/3 txt-ms'>
-                                <input class='input' placeholder='10' />
+                                <input class='input' name="area" onChange={this.handleInputChange} placeholder='10' />
                             </div>
                         </div>
 
-
+                        {/* 
                         <div class='toggle-group mt6 mb18'>
                             <label class='toggle-container w120'>
-                                <input checked name='toggle-1' type='radio' onChange={this.toggleState} checked={!this.state.toggle} />
+                                <input name='toggle-1' type='radio' onChange={this.toggleState} checked={!this.state.toggle} />
                                 <div class='toggle'>Charts</div>
                             </label>
                             <label class='toggle-container w120'>
@@ -248,48 +309,48 @@ export default class App extends React.PureComponent {
                                 <div class='toggle'>Indicators</div>
                             </label>
                         </div>
+                 */}
+
+                        {error}
+
+                        <div className={!this.state.toggle ? 'hidden' : null} class='mt12'>
+
+                            <div class='grid'>
+                                <div class='col w-1/2 txt-s'>Energy Efficiency</div>
+                                <div class='col w-1/2 txt-s'>Total Power Used</div>
+                            </div>
+
+
+                            <div class='grid'>
+                                <div class='col w-1/2'><h1>1.2 kWh/m</h1></div>
+                                <div class='col w-1/2 txt-s'><h1>200 kWh</h1></div>
+                            </div>
+
+                            <div class='grid mt24'>
+                                <div class='col w-1/2 txt-s'>Charge Used</div>
+                                <div class='col w-1/2 txt-s'>Average Speed</div>
+                            </div>
+
+
+                            <div class='grid'>
+                                <div class='col w-1/2'><h1>{this.state.soc_final}%</h1></div>
+                                <div class='col w-1/2 txt-s'><h1>{this.state.avg_speed} km/h</h1></div>
+                            </div>
+
+
+                            <div class='grid mt24'>
+                                <div class='col w-1/2 txt-s'>Route Distance</div>
+                                <div class='col w-1/2 txt-s'>Run Time</div>
+                            </div>
+
+
+                            <div class='grid'>
+                                <div class='col w-1/2'><h1>{this.state.distance}km</h1></div>
+                                <div class='col w-1/2 txt-s'><h1>{this.state.time} mins</h1></div>
+                            </div>
+                        </div>
 
                         {charts}
-
-                        <div className={!this.state.toggle? 'hidden' : null} class='mt36'> 
-
-                        <div class='grid'>
-                            <div class='col w-1/2 txt-s'>Energy Efficiency</div>
-                            <div class='col w-1/2 txt-s'>Total Power Used</div>
-                        </div>
-
-
-                        <div class='grid'>
-                            <div class='col w-1/2'><h1>1.2 kWh/m</h1></div>
-                            <div class='col w-1/2 txt-s'><h1>200 kWh</h1></div>
-                        </div>
-
-                        <div class='grid mt24'>
-                            <div class='col w-1/2 txt-s'>Final State of Charge (SoC)</div>
-                            <div class='col w-1/2 txt-s'>Average Speed</div>
-                        </div>
-
-
-                        <div class='grid'>
-                            <div class='col w-1/2'><h1>{this.state.soc}%</h1></div>
-                            <div class='col w-1/2 txt-s'><h1>{this.state.avg_speed} km/h</h1></div>
-                        </div>
-
-
-                        <div class='grid mt24'>
-                            <div class='col w-1/2 txt-s'>Route Distance</div>
-                            <div class='col w-1/2 txt-s'>Run Time</div>
-                        </div>
-
-
-                        <div class='grid'>
-                            <div class='col w-1/2'><h1>{this.state.distance}km</h1></div>
-                            <div class='col w-1/2 txt-s'><h1>{this.state.time} mins</h1></div>
-                        </div>
-
-
-                        </div>
-
 
                     </div>
                 </div>
