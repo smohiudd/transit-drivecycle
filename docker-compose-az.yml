@@ -1,0 +1,20 @@
+services:
+  valhalla:
+    image: saadiqm.azurecr.io/drivecycle-valhalla
+    container_name: valhalla
+  drivecycleapi:
+    image: saadiqm.azurecr.io/drivecycle-api
+    container_name: drivecycleapi
+    depends_on:
+      - valhalla
+  frontend:
+    image: saadiqm.azurecr.io/frontend-react-prod
+    container_name: frontend
+    ports:
+      - 80:80
+    depends_on:
+      - drivecycleapi
+    domainname: "drivecycle"
+networks:
+  default:
+    name: transitdrivecycle-prod-network

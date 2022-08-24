@@ -170,6 +170,8 @@ function get_data(url){
 
 function get_drive_cycle(pattern) {
 
+    console.log("hello")
+
     const params = {
         onestop_id:pattern
     }
@@ -182,6 +184,8 @@ function get_drive_cycle(pattern) {
 
     const drivecycle_url = decodeURIComponent(url.href)
     const transitland_route_url = decodeURIComponent(transitland.href)
+
+    
 
     Promise.all([
         d3.json(drivecycle_url),

@@ -1,9 +1,8 @@
 import React from 'react';
 import maplibregl from 'maplibre-gl';
+import bbox from '@turf/bbox';
 import MyD3Component from './barchart';
 import calgary_data from './calgary_routes.json';
-
-
 
 export default class App extends React.PureComponent {
     constructor(props) {
@@ -55,7 +54,8 @@ export default class App extends React.PureComponent {
 
         this.map.on('load', () => {
 
-            let geojson_url = "http://localhost:81/route/?onestop_id=" + pattern_
+            let geojson_url = `/route/?onestop_id=` + pattern_
+            console.log(geojson_url)
 
 
             this.map.addSource('Route', {
@@ -81,7 +81,7 @@ export default class App extends React.PureComponent {
     }
 
     set_data(pattern, setdata = true, energy = false) {
-        let url = "http://localhost:81/route/?onestop_id=" + pattern
+        let url = `/route/?onestop_id=` + pattern
         fetch(url)
             .then(res => res.json())
             .then(
@@ -91,8 +91,10 @@ export default class App extends React.PureComponent {
                     }, () => {
                         if (setdata) {
                             this.map.getSource('Route').setData(result)
+                            var box = bbox(route);
+                            this.map.fitBounds(box, {padding: 30});
                         }
-                        fetch('http://localhost:81/drivecycle_post/', {
+                        fetch(`/drivecycle_post/`, {
                             method: 'POST',
                             headers: {
                                 'Accept': 'application/json',
@@ -125,7 +127,7 @@ export default class App extends React.PureComponent {
     }
 
     set_energy() {
-        fetch('http://localhost:81/energy/', {
+        fetch(`/energy/`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -326,7 +328,7 @@ export default class App extends React.PureComponent {
                                 <div class='col w-1/2 txt-s'><h1>200 kWh</h1></div>
                             </div>
 
-                            <div class='grid mt24'>
+                            <div class='grid mt12'>
                                 <div class='col w-1/2 txt-s'>Charge Used</div>
                                 <div class='col w-1/2 txt-s'>Average Speed</div>
                             </div>
@@ -338,7 +340,7 @@ export default class App extends React.PureComponent {
                             </div>
 
 
-                            <div class='grid mt24'>
+                            <div class='grid mt12'>
                                 <div class='col w-1/2 txt-s'>Route Distance</div>
                                 <div class='col w-1/2 txt-s'>Run Time</div>
                             </div>

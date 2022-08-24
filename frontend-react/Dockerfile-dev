@@ -4,12 +4,12 @@ ENV NODE_ENV development
 WORKDIR /app
 # Cache and Install dependencies
 COPY ./frontend-react/package.json .
-COPY ./frontend-react/package-lock.json .
+COPY ./frontend-react/yarn.lock .
 
-RUN npm install
+RUN yarn install
 # Copy app files
 COPY ./frontend-react .
 # Expose port
 EXPOSE 3000
 # Start the app
-CMD [ "npm", "start" ]
+CMD [ "yarn", "start" ]

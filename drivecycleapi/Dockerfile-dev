@@ -10,8 +10,6 @@ RUN pip install -e git+https://github.com/smohiudd/drivecycle.git@c1609b97679650
 
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
-COPY ./drivecycleapi/app /code/app
+# COPY ./drivecycleapi/app /code/app
 
-EXPOSE 81
-
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "81"]
+# CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "81"]

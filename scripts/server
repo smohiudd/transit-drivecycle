@@ -19,14 +19,34 @@ Runs the development server and database.
 
 while [[ "$#" > 0 ]]; do case $1 in
   --detached) DETACHED_ARG="--detach"; shift;;
+  --dev) DEV=1; shift;;
+  --prod) PROD=1; shift;;
   --help) usage; exit 0; shift;;
   *) break;;
 esac; done
 
 if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
     # Execute in subshell to avoid leaking exported env vars.
-        docker-compose \
-            -f docker-compose.yml \
+        docker compose \
+            -f docker-compose-dev.yml \
             run --rm --service-ports \
-            frontend-react
+            frontend-react-dev
+
+
+        if [ "${DEV}" ]; then
+            echo "==Building dev images..."
+            docker compose \
+                -f docker-compose-dev.yml \
+                run --rm --service-ports \
+                frontend-react-dev
+        if
+
+        if [ "${PROD}" ]; then
+            echo "==Building prod images..."
+            docker compose \
+                -f docker-compose.yml \
+                run --rm --service-ports \
+                frontend-react-prod
+        if
+
 fi

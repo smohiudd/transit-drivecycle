@@ -1,0 +1,78 @@
+services:
+  valhalla:
+    container_name: drivecycle-valhalla-dev
+    image: drivecycle-valhalla-dev
+    ports:
+      - 8002:8002
+    build:
+      context: .
+      dockerfile: valhalla/Dockerfile-dev
+    volumes:
+      - ./valhalla/data:/custom_files
+    environment:
+      - server_threads=2  # determines how many threads will be used to run the valhalla server
+      - use_tiles_ignore_pbf=True  # load existing valhalla_tiles.tar directly
+      - build_elevation=True  # build elevation with "True" or "Force": will download only the elevation for areas covered by the graph tiles
+      - build_admins=False  # build admins db with "True" or "Force"
+      - build_time_zones=False  # build timezone db with "True" or "Force"
+      - build_tar=True  # build an indexed tar file from the tile_dir for faster graph loading times
+      - force_rebuild=True  # forces a rebuild of the routing tiles with "True"
+  drivecycleapi:
+    container_name: drivecycle-api-dev
+    image: drivecycle-api-dev
+    ports:
+      - 81:81
+    build:
+      context: .
+      dockerfile: drivecycleapi/Dockerfile-dev
+    depends_on:
+      - valhalla
+    volumes:
+      - ./drivecycleapi/app:/code/app
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "81", "--reload"]
+  # frontend-dev:
+  #   container_name: frontend-dev
+  #   image: frontend-dev
+  #   ports:
+  #     - 80:80
+  #   build:
+  #     context: .
+  #     dockerfile: frontend/Dockerfile
+  #   depends_on:
+  #     - drivecycleapi
+  #     - valhalla
+  #   volumes:
+  #     - ./frontend/site:/usr/share/nginx/html
+  #     - ./frontend/default.conf:/etc/nginx/conf.d/default.conf
+  frontend-react-dev:
+    container_name: frontend-react-dev
+    image: frontend-react-dev
+    ports:
+      - 3000:3000
+    build:
+      context: .
+      target: development
+      dockerfile: frontend-react/Dockerfile-dev
+    depends_on:
+      - drivecycleapi
+    volumes:
+      - ./frontend-react/src:/app/src
+#   database:
+#     container_name: transit-drivecycle-db
+#     image: transit-drivecycle-db
+#     build:
+#       context: .
+#       dockerfile: database/Dockerfile
+#     environment:
+#       - POSTGRES_USER=username
+#       - POSTGRES_PASSWORD=password
+#       - POSTGRES_DB=postgis
+#     ports:
+#       - "5433:5432"
+#     volumes:
+#       - transit-drivecycle-pgdata:/var/lib/postgresql/data
+# volumes:
+#   transit-drivecycle-pgdata:  
+networks:
+  default:
+    name: transitdrivecycle-dev-network

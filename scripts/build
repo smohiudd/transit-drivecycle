@@ -11,6 +11,8 @@ NO_CACHE="";
 while [[ "$#" > 0 ]]; do case $1 in
     --no-cache) NO_CACHE="--no-cache"; shift;;
     --restart) RESTART_SERVERS=1; shift;;
+    --dev) DEV=1; shift;;
+    --prod) PROD=1; shift;;
     --help) usage; exit 0; shift;;
   *) usage "Unknown parameter passed: $1"; shift; shift;;
 esac; done
@@ -20,13 +22,24 @@ if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
     if [ "${RESTART_SERVERS}" ]; then
         echo "==Bringing down servers.."
         docker-compose \
-            -f docker-compose.yml \
             down --remove-orphans
     fi
 
-    echo "==Building images..."
-    docker-compose \
-        -f docker-compose.yml \
-        build ${NO_CACHE}
+
+    if [ "${DEV}" ]; then
+        echo "==Building dev images..."
+        docker compose \
+            -f docker-compose-dev.yml \
+            build ${NO_CACHE}
+
+    if
+
+    if [ "${PROD}" ]; then
+        echo "==Building dev images..."
+        docker compose \
+            -f docker-compose.yml \
+            build ${NO_CACHE}
+
+    if
 
 fi

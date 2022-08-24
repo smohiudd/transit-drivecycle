@@ -6,8 +6,9 @@ import json
 import requests
 from . import config
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
+from starlette.middleware.base import BaseHTTPMiddleware
 
 from pydantic import BaseModel
 
@@ -25,26 +26,45 @@ class Energy(BaseModel):
     capacity: float
     
 valhalla_host = "http://valhalla:8002"
+# valhalla_host = "http://localhost:8002"
+
+# class MyHeadersMiddleware(BaseHTTPMiddleware):
+#     async def dispatch(self, request, call_next):
+#         response = await call_next(request)
+#         response.headers["Access-Control-Allow-Private-Network"] = "true"
+#         return response
+
 
 origins = [
     "http://localhost:3000",
+    "http://localhost",
+    "https://localhost",
+    "http://drivecycle.eastus.azurecontainer.io/"
 ]
 
 app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
+    allow_origins=["*"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# app.add_middleware(MyHeadersMiddleware)
+
+
 
 @app.get("/")
 def read_root():
     return {"This is Transit Drivecycle V0.1"}
 
 
+@app.middleware("http")
+async def add_process_time_header(request: Request, call_next):
+    response = await call_next(request)
+    response.headers["Access-Control-Allow-Private-Network"] = "true"
+    return response
 
 @app.post("/energy/")
 async def get_energy(item: Energy):
