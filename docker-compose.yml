@@ -23,6 +23,7 @@ services:
       dockerfile: frontend-react/Dockerfile
     depends_on:
       - drivecycleapi
+    domainname: "drivecycle"
 networks:
   default:
     name: transitdrivecycle-prod-network

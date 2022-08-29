@@ -1,9 +1,9 @@
 import React from 'react';
 import * as d3 from "d3";
 
-var margin = { top: 20, right: 20, bottom: 40, left: 60 }
-    , width = 360
-    , height = 50
+var margin = { top: 30, right: 20, bottom: 40, left: 60 }
+    , width = 320
+    , height = 60
 
 
 export default class MyD3Component extends React.Component {
@@ -18,19 +18,21 @@ export default class MyD3Component extends React.Component {
 
         this.svg = d3.select(this.myReference.current)
             .append("svg")
-            .attr("width", width + margin.left + margin.right)
-            .attr("height", height + margin.top + margin.bottom)
+            .attr("preserveAspectRatio", "xMinYMin meet")
+            .attr(`viewBox`, `0 0 ${width + margin.left + margin.right} ${height + margin.top + margin.bottom}`)
+            .classed("svg-content", true)
             .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
         this.update();
     }
 
-    componentDidUpdate(){
+    componentDidUpdate() {
         this.update();
     }
 
     update() {
+
 
         let x = this.props.x
         let y = this.props.y
@@ -84,17 +86,6 @@ export default class MyD3Component extends React.Component {
             .text(this.props.y_label)
             .style("font", "12px sans-serif")
 
-
-
-        // svg.selectAll("rect")
-        //     .data(this.props.data)
-        //     .enter()
-        //     .append("rect")
-        //     .attr("x", (d, i) => i * 70)
-        //     .attr("y", (d, i) => h - 10 * d)
-        //     .attr("width", 65)
-        //     .attr("height", (d, i) => d * 10)
-        //     .attr("fill", "green")
 
     }
 

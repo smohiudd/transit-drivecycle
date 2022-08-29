@@ -16,7 +16,7 @@ services:
       - build_admins=False  # build admins db with "True" or "Force"
       - build_time_zones=False  # build timezone db with "True" or "Force"
       - build_tar=True  # build an indexed tar file from the tile_dir for faster graph loading times
-      - force_rebuild=True  # forces a rebuild of the routing tiles with "True"
+      - force_rebuild=False  # forces a rebuild of the routing tiles with "True"
   drivecycleapi:
     container_name: drivecycle-api-dev
     image: drivecycle-api-dev

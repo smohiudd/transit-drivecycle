@@ -32,14 +32,14 @@ if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
             -f docker-compose-dev.yml \
             build ${NO_CACHE}
 
-    if
+    fi
 
     if [ "${PROD}" ]; then
-        echo "==Building dev images..."
+        echo "==Building prod images..."
         docker compose \
             -f docker-compose.yml \
             build ${NO_CACHE}
 
-    if
+    fi
 
 fi

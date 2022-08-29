@@ -138,6 +138,7 @@
     "timezone": "/custom_files/timezone_data/timezones.sqlite",
     "traffic_extract": "",
     "transit_dir": "",
+    "transit_feeds_dir": "/data/valhalla/transit_feeds",
     "use_lru_mem_cache": false,
     "use_simple_mem_cache": false
   },
