@@ -1,6 +1,8 @@
 elevation_data/
 valhalla_tiles/
 .ipynb_checkpoints/
+transit-drivecycle-pgdata/
+gtfs/gtfs*
 *.tar
 *.pbf
 
