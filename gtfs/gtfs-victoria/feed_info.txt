@@ -1,0 +1,2 @@
+feed_publisher_name,feed_publisher_url,feed_lang,feed_version
+BC Transit,http://www.bctransit.com,en,Th201708171013

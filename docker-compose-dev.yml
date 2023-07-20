@@ -1,22 +1,20 @@
 services:
   valhalla:
     container_name: drivecycle-valhalla-dev
-    image: drivecycle-valhalla-dev
+    image: gisops/valhalla:3.3.0
+    platform: linux/amd64
     ports:
       - 8002:8002
-    build:
-      context: .
-      dockerfile: valhalla/Dockerfile-dev
     volumes:
       - ./valhalla/data:/custom_files
     environment:
       - server_threads=2  # determines how many threads will be used to run the valhalla server
-      - use_tiles_ignore_pbf=True  # load existing valhalla_tiles.tar directly
+      - use_tiles_ignore_pbf=False  # load existing valhalla_tiles.tar directly
       - build_elevation=True  # build elevation with "True" or "Force": will download only the elevation for areas covered by the graph tiles
       - build_admins=False  # build admins db with "True" or "Force"
       - build_time_zones=False  # build timezone db with "True" or "Force"
       - build_tar=True  # build an indexed tar file from the tile_dir for faster graph loading times
-      - force_rebuild=False  # forces a rebuild of the routing tiles with "True"
+      - force_rebuild=True  # forces a rebuild of the routing tiles with "True"
   drivecycleapi:
     container_name: drivecycle-api-dev
     image: drivecycle-api-dev
@@ -57,22 +55,40 @@ services:
       - drivecycleapi
     volumes:
       - ./frontend-react/src:/app/src
-#   database:
-#     container_name: transit-drivecycle-db
-#     image: transit-drivecycle-db
-#     build:
-#       context: .
-#       dockerfile: database/Dockerfile
-#     environment:
-#       - POSTGRES_USER=username
-#       - POSTGRES_PASSWORD=password
-#       - POSTGRES_DB=postgis
-#     ports:
-#       - "5433:5432"
-#     volumes:
-#       - transit-drivecycle-pgdata:/var/lib/postgresql/data
-# volumes:
-#   transit-drivecycle-pgdata:  
+  database:
+    container_name: transit-drivecycle-db
+    image: transit-drivecycle-db
+    build:
+      context: .
+      dockerfile: database/Dockerfile
+    environment:
+      - POSTGRES_USER=username
+      - POSTGRES_PASS=password
+      # - POSTGRES_DB=postgis
+      - POSTGRES_DB=victoria_gtfs
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./transit-drivecycle-pgdata:/var/lib/postgresql
+  gtfs:
+    container_name: transit-drivecycle-gtfs
+    image: transit-drivecycle-gtfs
+    build:
+      context: .
+      dockerfile: gtfs/Dockerfile
+    environment:
+      - PGUSER=username
+      - PGPORT=5432
+      - PGPASSWORD=password
+      - PGHOST=database
+      # - PGDATABASE=postgis
+      - PGDATABASE=victoria_gtfs
+    volumes:
+      - ./gtfs/gtfs-victoria:/gtfs
+    depends_on:
+      - database
+volumes:
+  transit-drivecycle-pgdata:  
 networks:
   default:
     name: transitdrivecycle-dev-network

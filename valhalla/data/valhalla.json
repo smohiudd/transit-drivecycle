@@ -8,7 +8,8 @@
       "interrupt": "ipc:///tmp/interrupt",
       "listen": "tcp://*:8002",
       "loopback": "ipc:///tmp/loopback",
-      "shutdown_seconds": 1
+      "shutdown_seconds": 1,
+      "timeout_seconds": -1
     }
   },
   "loki": {
@@ -103,6 +104,7 @@
   },
   "mjolnir": {
     "admin": "/custom_files/admin_data/admins.sqlite",
+    "concurrency": 2,
     "data_processing": {
       "allow_alt_name": false,
       "apply_country_overrides": true,
@@ -123,6 +125,7 @@
     "include_driveways": true,
     "include_driving": true,
     "include_pedestrian": true,
+    "include_platforms": false,
     "logging": {
       "color": true,
       "file_name": "path_to_some_file.log",
@@ -136,9 +139,10 @@
     "tile_dir": "/custom_files/valhalla_tiles",
     "tile_extract": "/custom_files/valhalla_tiles.tar",
     "timezone": "/custom_files/timezone_data/timezones.sqlite",
-    "traffic_extract": "",
-    "transit_dir": "",
-    "transit_feeds_dir": "/data/valhalla/transit_feeds",
+    "traffic_extract": "/custom_files/traffic.tar",
+    "transit_dir": "/custom_files/transit_tiles",
+    "transit_feeds_dir": "/gtfs_feeds",
+    "transit_pbf_limit": 20000,
     "use_lru_mem_cache": false,
     "use_simple_mem_cache": false
   },
@@ -193,11 +197,13 @@
       "max_time_contour": 120
     },
     "max_alternates": 2,
+    "max_distance_disable_hierarchy_culling": 0,
     "max_exclude_locations": 50,
     "max_exclude_polygons_length": 10000,
     "max_radius": 200,
     "max_reachability": 100,
     "max_timedep_distance": 500000,
+    "max_timedep_distance_matrix": 0,
     "motor_scooter": {
       "max_distance": 500000,
       "max_locations": 50,
@@ -271,7 +277,10 @@
       "long_request": 110,
       "type": "std_out"
     },
-    "max_reserved_labels_count": 1000000,
+    "max_reserved_labels_count_astar": 2000000,
+    "max_reserved_labels_count_bidir_astar": 1000000,
+    "max_reserved_labels_count_bidir_dijkstras": 2000000,
+    "max_reserved_labels_count_dijkstras": 4000000,
     "service": {
       "proxy": "ipc:///tmp/thor"
     },
