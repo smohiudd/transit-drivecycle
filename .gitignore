@@ -13,4 +13,4 @@ build
 *.lock
 package-lock.json
 calgary/
-__pycahe__
+__pycache__
