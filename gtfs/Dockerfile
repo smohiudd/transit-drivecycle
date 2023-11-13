@@ -1,4 +1,4 @@
-FROM ghcr.io/public-transport/gtfs-via-postgres
+FROM gtfs-postgres
 
 RUN apk --update add postgresql-client
 RUN apk add --no-cache bash

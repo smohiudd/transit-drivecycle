@@ -3,7 +3,7 @@ services:
     container_name: drivecycle-valhalla-dev
     build:
       context: .
-      dockerfile: valhalla/Dockerfile-dev
+      dockerfile: valhalla/Dockerfile
     ports:
       - 8002:8002
     volumes:
@@ -24,10 +24,18 @@ services:
     build:
       context: .
       dockerfile: drivecycleapi/Dockerfile-dev
-    depends_on:
-      - valhalla
+    # depends_on:
+    #   - valhalla
+    environment:
+      - POSTGRES_DB=postgis
+      - POSTGRES_USER=username
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_HOST=database
+      - POSTGRES_PORT=5432
+      - SRID=3402
     volumes:
       - ./drivecycleapi/app:/code/app
+    # command: ["./wait-for-it.sh", "-t", "240", "-h", "database", "-p", "5432", "--", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "81", "--reload"]
     command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "81", "--reload"]
   # frontend-dev:
   #   container_name: frontend-dev
@@ -43,19 +51,19 @@ services:
   #   volumes:
   #     - ./frontend/site:/usr/share/nginx/html
   #     - ./frontend/default.conf:/etc/nginx/conf.d/default.conf
-  frontend-react-dev:
-    container_name: frontend-react-dev
-    image: frontend-react-dev
+  frontend-dev:
+    container_name: frontend-dev
+    image: frontend-dev
     ports:
       - 3000:3000
     build:
       context: .
       target: development
-      dockerfile: frontend-react/Dockerfile-dev
+      dockerfile: frontend/Dockerfile-dev
     depends_on:
       - drivecycleapi
     volumes:
-      - ./frontend-react/src:/app/src
+      - ./frontend/src:/app/src
   database:
     container_name: transit-drivecycle-db
     image: transit-drivecycle-db
@@ -65,8 +73,7 @@ services:
     environment:
       - POSTGRES_USER=username
       - POSTGRES_PASS=password
-      # - POSTGRES_DB=postgis
-      - POSTGRES_DB=victoria_gtfs
+      - POSTGRES_DB=postgis
     ports:
       - "5432:5432"
     volumes:
@@ -82,10 +89,9 @@ services:
       - PGPORT=5432
       - PGPASSWORD=password
       - PGHOST=database
-      # - PGDATABASE=postgis
-      - PGDATABASE=victoria_gtfs
+      - PGDATABASE=postgis
     volumes:
-      - ./gtfs/gtfs-victoria:/gtfs
+      - ./gtfs/calgary:/gtfs
     depends_on:
       - database
 volumes:

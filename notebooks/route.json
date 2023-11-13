@@ -1,0 +1,1255 @@
+{
+    "trip": {
+        "locations": [
+            {
+                "type": "break",
+                "lat": 51.093745,
+                "lon": -114.199325,
+                "original_index": 0
+            },
+            {
+                "type": "via",
+                "lat": 51.088986,
+                "lon": -114.246938,
+                "original_index": 0
+            }
+        ],
+        "legs": [
+            {
+                "maneuvers": [
+                    {
+                        "type": 1,
+                        "instruction": "Drive south on 77 Street NW.",
+                        "verbal_succinct_transition_instruction": "Drive south.",
+                        "verbal_pre_transition_instruction": "Drive south on 77 Street NW.",
+                        "verbal_post_transition_instruction": "Continue for 500 meters.",
+                        "street_names": [
+                            "77 Street NW"
+                        ],
+                        "time": 63.71,
+                        "length": 0.529,
+                        "cost": 91.338,
+                        "begin_shape_index": 0,
+                        "end_shape_index": 10,
+                        "travel_mode": "drive",
+                        "travel_type": "bus"
+                    },
+                    {
+                        "type": 10,
+                        "instruction": "Turn right onto Bowness Road NW.",
+                        "verbal_transition_alert_instruction": "Turn right onto Bowness Road NW.",
+                        "verbal_succinct_transition_instruction": "Turn right.",
+                        "verbal_pre_transition_instruction": "Turn right onto Bowness Road NW.",
+                        "verbal_post_transition_instruction": "Continue for 700 meters.",
+                        "street_names": [
+                            "Bowness Road NW"
+                        ],
+                        "time": 67.632,
+                        "length": 0.669,
+                        "cost": 110.525,
+                        "begin_shape_index": 10,
+                        "end_shape_index": 22,
+                        "travel_mode": "drive",
+                        "travel_type": "bus"
+                    },
+                    {
+                        "type": 15,
+                        "instruction": "Turn left onto 83 Street NW.",
+                        "verbal_transition_alert_instruction": "Turn left onto 83 Street NW.",
+                        "verbal_succinct_transition_instruction": "Turn left.",
+                        "verbal_pre_transition_instruction": "Turn left onto 83 Street NW.",
+                        "verbal_post_transition_instruction": "Continue for 600 meters.",
+                        "street_names": [
+                            "83 Street NW"
+                        ],
+                        "time": 54.191,
+                        "length": 0.577,
+                        "cost": 103.224,
+                        "begin_shape_index": 22,
+                        "end_shape_index": 40,
+                        "travel_mode": "drive",
+                        "travel_type": "bus"
+                    },
+                    {
+                        "type": 26,
+                        "instruction": "Enter the roundabout and take the 2nd exit onto Bowfort Road NW.",
+                        "verbal_transition_alert_instruction": "Enter the roundabout and take the 2nd exit onto Bowfort Road NW.",
+                        "verbal_succinct_transition_instruction": "Enter the roundabout and take the 2nd exit.",
+                        "verbal_pre_transition_instruction": "Enter the roundabout and take the 2nd exit onto Bowfort Road NW.",
+                        "time": 11.668,
+                        "length": 0.063,
+                        "cost": 19.59,
+                        "begin_shape_index": 40,
+                        "end_shape_index": 54,
+                        "roundabout_exit_count": 2,
+                        "travel_mode": "drive",
+                        "travel_type": "bus"
+                    },
+                    {
+                        "type": 27,
+                        "instruction": "Exit the roundabout onto Bowfort Road NW.",
+                        "verbal_succinct_transition_instruction": "Exit the roundabout.",
+                        "verbal_pre_transition_instruction": "Exit the roundabout onto Bowfort Road NW.",
+                        "verbal_post_transition_instruction": "Continue for 300 meters.",
+                        "street_names": [
+                            "Bowfort Road NW"
+                        ],
+                        "time": 23.882,
+                        "length": 0.263,
+                        "cost": 53.645,
+                        "begin_shape_index": 54,
+                        "end_shape_index": 77,
+                        "travel_mode": "drive",
+                        "travel_type": "bus"
+                    },
+                    {
+                        "type": 26,
+                        "instruction": "Enter the roundabout and take the 2nd exit onto Bowfort Road NW.",
+                        "verbal_transition_alert_instruction": "Enter the roundabout and take the 2nd exit onto Bowfort Road NW.",
+                        "verbal_succinct_transition_instruction": "Enter the roundabout and take the 2nd exit.",
+                        "verbal_pre_transition_instruction": "Enter the roundabout and take the 2nd exit onto Bowfort Road NW.",
+                        "time": 1.549,
+                        "length": 0.007,
+                        "cost": 8.754,
+                        "begin_shape_index": 77,
+                        "end_shape_index": 80,
+                        "roundabout_exit_count": 2,
+                        "travel_mode": "drive",
+                        "travel_type": "bus"
+                    },
+                    {
+                        "type": 27,
+                        "instruction": "Exit the roundabout onto Bowfort Road NW.",
+                        "verbal_succinct_transition_instruction": "Exit the roundabout. Then, in 80 meters, Take the 1 ramp on the right.",
+                        "verbal_pre_transition_instruction": "Exit the roundabout onto Bowfort Road NW. Then, in 80 meters, Take the 1 ramp on the right.",
+                        "verbal_post_transition_instruction": "Continue for 80 meters.",
+                        "street_names": [
+                            "Bowfort Road NW"
+                        ],
+                        "time": 7.342,
+                        "length": 0.081,
+                        "cost": 16.036,
+                        "begin_shape_index": 80,
+                        "end_shape_index": 86,
+                        "verbal_multi_cue": true,
+                        "travel_mode": "drive",
+                        "travel_type": "bus"
+                    },
+                    {
+                        "type": 18,
+                        "instruction": "Take the 1 ramp on the right.",
+                        "verbal_transition_alert_instruction": "Take the 1 ramp on the right.",
+                        "verbal_pre_transition_instruction": "Take the 1 ramp on the right.",
+                        "verbal_post_transition_instruction": "Continue for 2.5 kilometers.",
+                        "street_names": [
+                            "1",
+                            "16 Avenue NW"
+                        ],
+                        "time": 122.61,
+                        "length": 2.748,
+                        "cost": 153.735,
+                        "begin_shape_index": 86,
+                        "end_shape_index": 125,
+                        "highway": true,
+                        "sign": {
+                            "exit_branch_elements": [
+                                {
+                                    "text": "1"
+                                }
+                            ]
+                        },
+                        "travel_mode": "drive",
+                        "travel_type": "bus"
+                    },
+                    {
+                        "type": 4,
+                        "instruction": "You have arrived at your destination.",
+                        "verbal_transition_alert_instruction": "You will arrive at your destination.",
+                        "verbal_pre_transition_instruction": "You have arrived at your destination.",
+                        "time": 0.0,
+                        "length": 0.0,
+                        "cost": 0.0,
+                        "begin_shape_index": 125,
+                        "end_shape_index": 125,
+                        "travel_mode": "drive",
+                        "travel_type": "bus"
+                    }
+                ],
+                "summary": {
+                    "has_time_restrictions": false,
+                    "has_toll": false,
+                    "has_highway": true,
+                    "has_ferry": false,
+                    "min_lat": 51.083664,
+                    "min_lon": -114.24694,
+                    "max_lat": 51.093745,
+                    "max_lon": -114.199315,
+                    "time": 352.588,
+                    "length": 4.937,
+                    "cost": 556.85
+                },
+                "shape": "cnom`B`qdyxEva@Cb{@El~@T~BGrb@UdOC`d@EbC?pSL|TFHbo@[|u@rAtF@nPGzGBfK@`c@f@n{C?zLy@pPiEtNmsAjyC`T|[nTt\\|TnYbWzUxvBvyB~KxJdFjDzCbDjE~BbDhAhDn@bDZbCRf@JtBp@x@f@|@t@vBbCLTp@tAdA~ApA`AxA`@pAGnAYdB_A|@oAr@cBb@qBT{BD_CI_CWmHE}DJgGNaBZiFlAiH|@sElA{EdDmJjIgSzDeJpBgGdDqKh@cCxDmPjC{LxCqOl@aD|AuHv@mBp@cBpAmBjBmBNAl@Az@WjEg@tBLdFbAlJhDp@T~LrEjC~Cx@~Ar@`Bh@fBb@fCJ|B?xCKtDWdDe@zDkAfFcCfNiB`OmAhMiDtW_CzPoCbVaGnc@eJnm@kHra@aTflA{PztAkXz{A{UlvAqs@vwEol@x~Dk_@vlC{PvdBqIp_BmBxy@s@ny@TljAYvmAe@zl@L|sCaAvlBLtxC|@zjECjx@"
+            }
+        ],
+        "summary": {
+            "has_time_restrictions": false,
+            "has_toll": false,
+            "has_highway": true,
+            "has_ferry": false,
+            "min_lat": 51.083664,
+            "min_lon": -114.24694,
+            "max_lat": 51.093745,
+            "max_lon": -114.199315,
+            "time": 352.588,
+            "length": 4.937,
+            "cost": 556.85
+        },
+        "status_message": "Found route between points",
+        "status": 0,
+        "units": "kilometers",
+        "language": "en-US"
+    },
+    "alternates": [
+        {
+            "trip": {
+                "locations": [
+                    {
+                        "type": "via",
+                        "lat": 51.08907,
+                        "lon": -114.247084,
+                        "original_index": 0
+                    },
+                    {
+                        "type": "via",
+                        "lat": 51.088519,
+                        "lon": -114.248775,
+                        "original_index": 0
+                    }
+                ],
+                "legs": [
+                    {
+                        "maneuvers": [
+                            {
+                                "type": 1,
+                                "instruction": "Drive northwest.",
+                                "verbal_succinct_transition_instruction": "Drive northwest. Then Enter the roundabout and take the 2nd exit onto 109 Street SW.",
+                                "verbal_pre_transition_instruction": "Drive northwest. Then Enter the roundabout and take the 2nd exit onto 109 Street SW.",
+                                "verbal_post_transition_instruction": "Continue for 100 meters.",
+                                "time": 4.236,
+                                "length": 0.102,
+                                "cost": 8.443,
+                                "begin_shape_index": 0,
+                                "end_shape_index": 5,
+                                "sign": {
+                                    "exit_number_elements": [
+                                        {
+                                            "text": "176"
+                                        }
+                                    ],
+                                    "exit_branch_elements": [
+                                        {
+                                            "text": "Valley Ridge Boulevard"
+                                        },
+                                        {
+                                            "text": "109 Street W"
+                                        }
+                                    ]
+                                },
+                                "verbal_multi_cue": true,
+                                "travel_mode": "drive",
+                                "travel_type": "bus"
+                            },
+                            {
+                                "type": 26,
+                                "instruction": "Enter the roundabout and take the 2nd exit onto 109 Street SW.",
+                                "verbal_transition_alert_instruction": "Enter the roundabout and take the 2nd exit onto 109 Street SW.",
+                                "verbal_succinct_transition_instruction": "Enter the roundabout and take the 2nd exit.",
+                                "verbal_pre_transition_instruction": "Enter the roundabout and take the 2nd exit onto 109 Street SW.",
+                                "time": 14.266,
+                                "length": 0.097,
+                                "cost": 22.528,
+                                "begin_shape_index": 5,
+                                "end_shape_index": 21,
+                                "roundabout_exit_count": 2,
+                                "travel_mode": "drive",
+                                "travel_type": "bus"
+                            },
+                            {
+                                "type": 27,
+                                "instruction": "Exit the roundabout onto 109 Street SW.",
+                                "verbal_succinct_transition_instruction": "Exit the roundabout. Then You will arrive at your destination.",
+                                "verbal_pre_transition_instruction": "Exit the roundabout onto 109 Street SW. Then You will arrive at your destination.",
+                                "verbal_post_transition_instruction": "Continue for 100 meters.",
+                                "street_names": [
+                                    "109 Street SW"
+                                ],
+                                "time": 8.653,
+                                "length": 0.119,
+                                "cost": 15.679,
+                                "begin_shape_index": 21,
+                                "end_shape_index": 26,
+                                "verbal_multi_cue": true,
+                                "travel_mode": "drive",
+                                "travel_type": "bus"
+                            },
+                            {
+                                "type": 4,
+                                "instruction": "You have arrived at your destination.",
+                                "verbal_transition_alert_instruction": "You will arrive at your destination.",
+                                "verbal_pre_transition_instruction": "You have arrived at your destination.",
+                                "time": 0.0,
+                                "length": 0.0,
+                                "cost": 0.0,
+                                "begin_shape_index": 26,
+                                "end_shape_index": 26,
+                                "travel_mode": "drive",
+                                "travel_type": "bus"
+                            }
+                        ],
+                        "summary": {
+                            "has_time_restrictions": false,
+                            "has_toll": false,
+                            "has_highway": false,
+                            "has_ferry": false,
+                            "min_lat": 51.088585,
+                            "min_lon": -114.248634,
+                            "max_lat": 51.090044,
+                            "max_lon": -114.246874,
+                            "time": 27.156,
+                            "length": 0.319,
+                            "cost": 46.651
+                        },
+                        "shape": "}yfm`Brla|xEkNxn@e@lAwA~DyBdCsJpEyBtAaBhC_A~Ca@tDCzD\\vDr@`Cp@xAf@lAfBzApBl@vA@tAYlBoAzA{BtAqBhCoEr@_@rCeAnd@kHnO_C"
+                    }
+                ],
+                "summary": {
+                    "has_time_restrictions": false,
+                    "has_toll": false,
+                    "has_highway": false,
+                    "has_ferry": false,
+                    "min_lat": 51.088585,
+                    "min_lon": -114.248634,
+                    "max_lat": 51.090044,
+                    "max_lon": -114.246874,
+                    "time": 27.156,
+                    "length": 0.319,
+                    "cost": 46.651
+                },
+                "status_message": "Found route between points",
+                "status": 0,
+                "units": "kilometers",
+                "language": "en-US"
+            }
+        },
+        {
+            "trip": {
+                "locations": [
+                    {
+                        "type": "via",
+                        "lat": 51.088332,
+                        "lon": -114.248778,
+                        "original_index": 0
+                    },
+                    {
+                        "type": "via",
+                        "lat": 51.088027,
+                        "lon": -114.248809,
+                        "original_index": 0
+                    }
+                ],
+                "legs": [
+                    {
+                        "maneuvers": [
+                            {
+                                "type": 1,
+                                "instruction": "Drive east.",
+                                "verbal_succinct_transition_instruction": "Drive east. Then You will arrive at your destination.",
+                                "verbal_pre_transition_instruction": "Drive east. Then You will arrive at your destination.",
+                                "verbal_post_transition_instruction": "Continue for 40 meters.",
+                                "time": 1.582,
+                                "length": 0.039,
+                                "cost": 1.503,
+                                "begin_shape_index": 0,
+                                "end_shape_index": 1,
+                                "sign": {
+                                    "exit_branch_elements": [
+                                        {
+                                            "text": "201"
+                                        },
+                                        {
+                                            "text": "Stoney Trail"
+                                        }
+                                    ],
+                                    "exit_toward_elements": [
+                                        {
+                                            "text": "Medicine Hat"
+                                        },
+                                        {
+                                            "text": "Edmonton"
+                                        },
+                                        {
+                                            "text": "Airport YYC"
+                                        },
+                                        {
+                                            "text": "Lethbridge"
+                                        }
+                                    ]
+                                },
+                                "verbal_multi_cue": true,
+                                "travel_mode": "drive",
+                                "travel_type": "bus"
+                            },
+                            {
+                                "type": 4,
+                                "instruction": "You have arrived at your destination.",
+                                "verbal_transition_alert_instruction": "You will arrive at your destination.",
+                                "verbal_pre_transition_instruction": "You have arrived at your destination.",
+                                "time": 0.0,
+                                "length": 0.0,
+                                "cost": 0.0,
+                                "begin_shape_index": 1,
+                                "end_shape_index": 1,
+                                "travel_mode": "drive",
+                                "travel_type": "bus"
+                            }
+                        ],
+                        "summary": {
+                            "has_time_restrictions": false,
+                            "has_toll": false,
+                            "has_highway": false,
+                            "has_ferry": false,
+                            "min_lat": 51.088173,
+                            "min_lon": -114.248782,
+                            "max_lat": 51.088179,
+                            "max_lon": -114.248224,
+                            "time": 1.582,
+                            "length": 0.039,
+                            "cost": 1.503
+                        },
+                        "shape": "grdm`B|ce|xEL}a@"
+                    }
+                ],
+                "summary": {
+                    "has_time_restrictions": false,
+                    "has_toll": false,
+                    "has_highway": false,
+                    "has_ferry": false,
+                    "min_lat": 51.088173,
+                    "min_lon": -114.248782,
+                    "max_lat": 51.088179,
+                    "max_lon": -114.248224,
+                    "time": 1.582,
+                    "length": 0.039,
+                    "cost": 1.503
+                },
+                "status_message": "Found route between points",
+                "status": 0,
+                "units": "kilometers",
+                "language": "en-US"
+            }
+        },
+        {
+            "trip": {
+                "locations": [
+                    {
+                        "type": "via",
+                        "lat": 51.087655,
+                        "lon": -114.248589,
+                        "original_index": 0
+                    },
+                    {
+                        "type": "via",
+                        "lat": 51.088065,
+                        "lon": -114.257477,
+                        "original_index": 0
+                    }
+                ],
+                "legs": [
+                    {
+                        "maneuvers": [
+                            {
+                                "type": 1,
+                                "instruction": "Drive south.",
+                                "verbal_succinct_transition_instruction": "Drive south.",
+                                "verbal_pre_transition_instruction": "Drive south.",
+                                "verbal_post_transition_instruction": "Continue for 50 meters.",
+                                "time": 7.838,
+                                "length": 0.054,
+                                "cost": 7.387,
+                                "begin_shape_index": 0,
+                                "end_shape_index": 10,
+                                "roundabout_exit_count": 2,
+                                "travel_mode": "drive",
+                                "travel_type": "bus"
+                            },
+                            {
+                                "type": 27,
+                                "instruction": "Exit the roundabout onto 109 Street SW.",
+                                "verbal_succinct_transition_instruction": "Exit the roundabout.",
+                                "verbal_pre_transition_instruction": "Exit the roundabout onto 109 Street SW.",
+                                "verbal_post_transition_instruction": "Continue for 400 meters.",
+                                "street_names": [
+                                    "109 Street SW"
+                                ],
+                                "time": 28.513,
+                                "length": 0.395,
+                                "cost": 39.0,
+                                "begin_shape_index": 10,
+                                "end_shape_index": 20,
+                                "travel_mode": "drive",
+                                "travel_type": "bus"
+                            },
+                            {
+                                "type": 10,
+                                "instruction": "Turn right onto Crestmont Boulevard SW.",
+                                "verbal_transition_alert_instruction": "Turn right onto Crestmont Boulevard SW.",
+                                "verbal_succinct_transition_instruction": "Turn right.",
+                                "verbal_pre_transition_instruction": "Turn right onto Crestmont Boulevard SW.",
+                                "verbal_post_transition_instruction": "Continue for 1 kilometer.",
+                                "street_names": [
+                                    "Crestmont Boulevard SW"
+                                ],
+                                "time": 73.452,
+                                "length": 0.953,
+                                "cost": 82.824,
+                                "begin_shape_index": 20,
+                                "end_shape_index": 39,
+                                "travel_mode": "drive",
+                                "travel_type": "bus"
+                            },
+                            {
+                                "type": 4,
+                                "instruction": "You have arrived at your destination.",
+                                "verbal_transition_alert_instruction": "You will arrive at your destination.",
+                                "verbal_pre_transition_instruction": "You have arrived at your destination.",
+                                "time": 0.0,
+                                "length": 0.0,
+                                "cost": 0.0,
+                                "begin_shape_index": 39,
+                                "end_shape_index": 39,
+                                "travel_mode": "drive",
+                                "travel_type": "bus"
+                            }
+                        ],
+                        "summary": {
+                            "has_time_restrictions": false,
+                            "has_toll": false,
+                            "has_highway": false,
+                            "has_ferry": false,
+                            "min_lat": 51.083863,
+                            "min_lon": -114.257325,
+                            "max_lat": 51.088068,
+                            "max_lon": -114.246013,
+                            "time": 109.804,
+                            "length": 1.402,
+                            "cost": 129.212
+                        },
+                        "shape": "clcm`Bxpc|xE`Ah@zAx@`B\\`B@`B[|Ay@tAsAhAmBz@_Cj@qCxBkHhIkNnYqYjOiM`LmJtXeOd`@uK~WyA`i@?lEBNzKDvC\\xZ~@hTHlUgB|SoBhOoE`S}HdWs{@riByDfIizAv`DeWpj@s\\xw@eGxVkHt`@wCn\\kBn\\kArg@"
+                    }
+                ],
+                "summary": {
+                    "has_time_restrictions": false,
+                    "has_toll": false,
+                    "has_highway": false,
+                    "has_ferry": false,
+                    "min_lat": 51.083863,
+                    "min_lon": -114.257325,
+                    "max_lat": 51.088068,
+                    "max_lon": -114.246013,
+                    "time": 109.804,
+                    "length": 1.402,
+                    "cost": 129.212
+                },
+                "status_message": "Found route between points",
+                "status": 0,
+                "units": "kilometers",
+                "language": "en-US"
+            }
+        },
+        {
+            "trip": {
+                "locations": [
+                    {
+                        "type": "via",
+                        "lat": 51.088065,
+                        "lon": -114.257477,
+                        "original_index": 0
+                    },
+                    {
+                        "type": "via",
+                        "lat": 51.087714,
+                        "lon": -114.248489,
+                        "original_index": 0
+                    }
+                ],
+                "legs": [
+                    {
+                        "maneuvers": [
+                            {
+                                "type": 1,
+                                "instruction": "Drive east on Crestmont Boulevard SW.",
+                                "verbal_succinct_transition_instruction": "Drive east.",
+                                "verbal_pre_transition_instruction": "Drive east on Crestmont Boulevard SW.",
+                                "verbal_post_transition_instruction": "Continue for 1 kilometer.",
+                                "street_names": [
+                                    "Crestmont Boulevard SW"
+                                ],
+                                "time": 69.599,
+                                "length": 0.966,
+                                "cost": 72.962,
+                                "begin_shape_index": 0,
+                                "end_shape_index": 21,
+                                "travel_mode": "drive",
+                                "travel_type": "bus"
+                            },
+                            {
+                                "type": 15,
+                                "instruction": "Turn left onto 109 Street SW.",
+                                "verbal_transition_alert_instruction": "Turn left onto 109 Street SW.",
+                                "verbal_succinct_transition_instruction": "Turn left.",
+                                "verbal_pre_transition_instruction": "Turn left onto 109 Street SW.",
+                                "verbal_post_transition_instruction": "Continue for 400 meters.",
+                                "street_names": [
+                                    "109 Street SW"
+                                ],
+                                "time": 30.026,
+                                "length": 0.405,
+                                "cost": 47.522,
+                                "begin_shape_index": 21,
+                                "end_shape_index": 40,
+                                "travel_mode": "drive",
+                                "travel_type": "bus"
+                            },
+                            {
+                                "type": 26,
+                                "instruction": "Enter the roundabout and take the 2nd exit.",
+                                "verbal_transition_alert_instruction": "Enter the roundabout and take the 2nd exit.",
+                                "verbal_succinct_transition_instruction": "Enter the roundabout and take the 2nd exit.",
+                                "verbal_pre_transition_instruction": "Enter the roundabout and take the 2nd exit.",
+                                "time": 13.306,
+                                "length": 0.091,
+                                "cost": 18.524,
+                                "begin_shape_index": 40,
+                                "end_shape_index": 57,
+                                "roundabout_exit_count": 2,
+                                "travel_mode": "drive",
+                                "travel_type": "bus"
+                            },
+                            {
+                                "type": 27,
+                                "instruction": "Exit the roundabout.",
+                                "verbal_succinct_transition_instruction": "Exit the roundabout. Then You will arrive at your destination.",
+                                "verbal_pre_transition_instruction": "Exit the roundabout. Then You will arrive at your destination.",
+                                "verbal_post_transition_instruction": "Continue for 10 meters.",
+                                "time": 0.555,
+                                "length": 0.01,
+                                "cost": 4.921,
+                                "begin_shape_index": 57,
+                                "end_shape_index": 58,
+                                "sign": {
+                                    "exit_branch_elements": [
+                                        {
+                                            "text": "201"
+                                        },
+                                        {
+                                            "text": "Stoney Trail"
+                                        }
+                                    ],
+                                    "exit_toward_elements": [
+                                        {
+                                            "text": "Medicine Hat"
+                                        },
+                                        {
+                                            "text": "Edmonton"
+                                        },
+                                        {
+                                            "text": "Airport YYC"
+                                        },
+                                        {
+                                            "text": "Lethbridge"
+                                        }
+                                    ]
+                                },
+                                "verbal_multi_cue": true,
+                                "travel_mode": "drive",
+                                "travel_type": "bus"
+                            },
+                            {
+                                "type": 4,
+                                "instruction": "You have arrived at your destination.",
+                                "verbal_transition_alert_instruction": "You will arrive at your destination.",
+                                "verbal_pre_transition_instruction": "You have arrived at your destination.",
+                                "time": 0.0,
+                                "length": 0.0,
+                                "cost": 0.0,
+                                "begin_shape_index": 58,
+                                "end_shape_index": 58,
+                                "travel_mode": "drive",
+                                "travel_type": "bus"
+                            }
+                        ],
+                        "summary": {
+                            "has_time_restrictions": false,
+                            "has_toll": false,
+                            "has_highway": false,
+                            "has_ferry": false,
+                            "min_lat": 51.083818,
+                            "min_lon": -114.257325,
+                            "max_lat": 51.088068,
+                            "max_lon": -114.245849,
+                            "time": 113.488,
+                            "length": 1.472,
+                            "cost": 143.93
+                        },
+                        "shape": "gkdm`Bxyu|xEjAsg@jBo\\vCo\\jHu`@dGyVr\\yw@dWqj@hzAw`DxDgIr{@siB|HeWnEaSnBiOfB}SxAsWc@_Ve@mRAmCAsCG_LaAmIkG?mWDsO^}JX{J~@qKzAwQ~D}SlImOpJkGfFkA`AoC|B{VhZaI`JsBvAaBd@sCTkCk@yEgC_Bo@cBQcBJyAd@sA|@kArAaAdBu@xBg@bCWlCGrCDpCXvCh@lCz@~BvAtC`Ah@hCzE"
+                    }
+                ],
+                "summary": {
+                    "has_time_restrictions": false,
+                    "has_toll": false,
+                    "has_highway": false,
+                    "has_ferry": false,
+                    "min_lat": 51.083818,
+                    "min_lon": -114.257325,
+                    "max_lat": 51.088068,
+                    "max_lon": -114.245849,
+                    "time": 113.488,
+                    "length": 1.472,
+                    "cost": 143.93
+                },
+                "status_message": "Found route between points",
+                "status": 0,
+                "units": "kilometers",
+                "language": "en-US"
+            }
+        },
+        {
+            "trip": {
+                "locations": [
+                    {
+                        "type": "via",
+                        "lat": 51.087768,
+                        "lon": -114.24886,
+                        "original_index": 0
+                    },
+                    {
+                        "type": "via",
+                        "lat": 51.088332,
+                        "lon": -114.248778,
+                        "original_index": 0
+                    }
+                ],
+                "legs": [
+                    {
+                        "maneuvers": [
+                            {
+                                "type": 1,
+                                "instruction": "Drive east.",
+                                "verbal_succinct_transition_instruction": "Drive east. Then You will arrive at your destination.",
+                                "verbal_pre_transition_instruction": "Drive east. Then You will arrive at your destination.",
+                                "verbal_post_transition_instruction": "Continue for 40 meters.",
+                                "time": 1.768,
+                                "length": 0.043,
+                                "cost": 1.68,
+                                "begin_shape_index": 0,
+                                "end_shape_index": 1,
+                                "sign": {
+                                    "exit_branch_elements": [
+                                        {
+                                            "text": "201"
+                                        },
+                                        {
+                                            "text": "Stoney Trail"
+                                        }
+                                    ],
+                                    "exit_toward_elements": [
+                                        {
+                                            "text": "Medicine Hat"
+                                        },
+                                        {
+                                            "text": "Edmonton"
+                                        },
+                                        {
+                                            "text": "Airport YYC"
+                                        },
+                                        {
+                                            "text": "Lethbridge"
+                                        }
+                                    ]
+                                },
+                                "verbal_multi_cue": true,
+                                "travel_mode": "drive",
+                                "travel_type": "bus"
+                            },
+                            {
+                                "type": 4,
+                                "instruction": "You have arrived at your destination.",
+                                "verbal_transition_alert_instruction": "You will arrive at your destination.",
+                                "verbal_pre_transition_instruction": "You have arrived at your destination.",
+                                "time": 0.0,
+                                "length": 0.0,
+                                "cost": 0.0,
+                                "begin_shape_index": 1,
+                                "end_shape_index": 1,
+                                "travel_mode": "drive",
+                                "travel_type": "bus"
+                            }
+                        ],
+                        "summary": {
+                            "has_time_restrictions": false,
+                            "has_toll": false,
+                            "has_highway": false,
+                            "has_ferry": false,
+                            "min_lat": 51.088173,
+                            "min_lon": -114.248848,
+                            "max_lat": 51.08818,
+                            "max_lon": -114.248224,
+                            "time": 1.768,
+                            "length": 0.043,
+                            "cost": 1.68
+                        },
+                        "shape": "irdm`B~ge|xEN_f@"
+                    }
+                ],
+                "summary": {
+                    "has_time_restrictions": false,
+                    "has_toll": false,
+                    "has_highway": false,
+                    "has_ferry": false,
+                    "min_lat": 51.088173,
+                    "min_lon": -114.248848,
+                    "max_lat": 51.08818,
+                    "max_lon": -114.248224,
+                    "time": 1.768,
+                    "length": 0.043,
+                    "cost": 1.68
+                },
+                "status_message": "Found route between points",
+                "status": 0,
+                "units": "kilometers",
+                "language": "en-US"
+            }
+        },
+        {
+            "trip": {
+                "locations": [
+                    {
+                        "type": "via",
+                        "lat": 51.088519,
+                        "lon": -114.248775,
+                        "original_index": 0
+                    },
+                    {
+                        "type": "via",
+                        "lat": 51.089273,
+                        "lon": -114.248725,
+                        "original_index": 0
+                    }
+                ],
+                "legs": [
+                    {
+                        "maneuvers": [
+                            {
+                                "type": 1,
+                                "instruction": "Drive west.",
+                                "verbal_succinct_transition_instruction": "Drive west. Then You will arrive at your destination.",
+                                "verbal_pre_transition_instruction": "Drive west. Then You will arrive at your destination.",
+                                "verbal_post_transition_instruction": "Continue for less than 10 meters.",
+                                "time": 0.553,
+                                "length": 0.004,
+                                "cost": 0.525,
+                                "begin_shape_index": 0,
+                                "end_shape_index": 1,
+                                "verbal_multi_cue": true,
+                                "travel_mode": "drive",
+                                "travel_type": "bus"
+                            },
+                            {
+                                "type": 4,
+                                "instruction": "You have arrived at your destination.",
+                                "verbal_transition_alert_instruction": "You will arrive at your destination.",
+                                "verbal_pre_transition_instruction": "You have arrived at your destination.",
+                                "time": 0.0,
+                                "length": 0.0,
+                                "cost": 0.0,
+                                "begin_shape_index": 1,
+                                "end_shape_index": 1,
+                                "travel_mode": "drive",
+                                "travel_type": "bus"
+                            }
+                        ],
+                        "summary": {
+                            "has_time_restrictions": false,
+                            "has_toll": false,
+                            "has_highway": false,
+                            "has_ferry": false,
+                            "min_lat": 51.088945,
+                            "min_lon": -114.248774,
+                            "max_lat": 51.088949,
+                            "max_lon": -114.248709,
+                            "time": 0.553,
+                            "length": 0.004,
+                            "cost": 0.525
+                        },
+                        "shape": "abfm`Bh_e|xEGbC"
+                    }
+                ],
+                "summary": {
+                    "has_time_restrictions": false,
+                    "has_toll": false,
+                    "has_highway": false,
+                    "has_ferry": false,
+                    "min_lat": 51.088945,
+                    "min_lon": -114.248774,
+                    "max_lat": 51.088949,
+                    "max_lon": -114.248709,
+                    "time": 0.553,
+                    "length": 0.004,
+                    "cost": 0.525
+                },
+                "status_message": "Found route between points",
+                "status": 0,
+                "units": "kilometers",
+                "language": "en-US"
+            }
+        },
+        {
+            "trip": {
+                "locations": [
+                    {
+                        "type": "via",
+                        "lat": 51.089434,
+                        "lon": -114.248636,
+                        "original_index": 0
+                    },
+                    {
+                        "type": "via",
+                        "lat": 51.090435,
+                        "lon": -114.249347,
+                        "original_index": 0
+                    }
+                ],
+                "legs": [
+                    {
+                        "maneuvers": [
+                            {
+                                "type": 1,
+                                "instruction": "Drive northeast.",
+                                "verbal_succinct_transition_instruction": "Drive northeast.",
+                                "verbal_pre_transition_instruction": "Drive northeast.",
+                                "verbal_post_transition_instruction": "Continue for 80 meters.",
+                                "time": 12.1,
+                                "length": 0.082,
+                                "cost": 11.512,
+                                "begin_shape_index": 0,
+                                "end_shape_index": 13,
+                                "roundabout_exit_count": 2,
+                                "travel_mode": "drive",
+                                "travel_type": "bus"
+                            },
+                            {
+                                "type": 27,
+                                "instruction": "Exit the roundabout.",
+                                "verbal_succinct_transition_instruction": "Exit the roundabout. Then You will arrive at your destination.",
+                                "verbal_pre_transition_instruction": "Exit the roundabout. Then You will arrive at your destination.",
+                                "verbal_post_transition_instruction": "Continue for 50 meters.",
+                                "time": 2.647,
+                                "length": 0.05,
+                                "cost": 10.721,
+                                "begin_shape_index": 13,
+                                "end_shape_index": 14,
+                                "sign": {
+                                    "exit_branch_elements": [
+                                        {
+                                            "text": "1 West"
+                                        },
+                                        {
+                                            "text": "16 Avenue North"
+                                        }
+                                    ],
+                                    "exit_toward_elements": [
+                                        {
+                                            "text": "Banff"
+                                        }
+                                    ]
+                                },
+                                "verbal_multi_cue": true,
+                                "travel_mode": "drive",
+                                "travel_type": "bus"
+                            },
+                            {
+                                "type": 4,
+                                "instruction": "You have arrived at your destination.",
+                                "verbal_transition_alert_instruction": "You will arrive at your destination.",
+                                "verbal_pre_transition_instruction": "You have arrived at your destination.",
+                                "time": 0.0,
+                                "length": 0.0,
+                                "cost": 0.0,
+                                "begin_shape_index": 14,
+                                "end_shape_index": 14,
+                                "travel_mode": "drive",
+                                "travel_type": "bus"
+                            }
+                        ],
+                        "summary": {
+                            "has_time_restrictions": false,
+                            "has_toll": false,
+                            "has_highway": false,
+                            "has_ferry": false,
+                            "min_lat": 51.089639,
+                            "min_lon": -114.249241,
+                            "max_lat": 51.090044,
+                            "max_lon": -114.247934,
+                            "time": 14.747,
+                            "length": 0.132,
+                            "cost": 22.234
+                        },
+                        "shape": "omgm`Bzxc|xEeAgC{AeBgB_AmBQmBVyBtAaBhC_A~Ca@tDCzD\\vDr@`Cp@xAaBvk@"
+                    }
+                ],
+                "summary": {
+                    "has_time_restrictions": false,
+                    "has_toll": false,
+                    "has_highway": false,
+                    "has_ferry": false,
+                    "min_lat": 51.089639,
+                    "min_lon": -114.249241,
+                    "max_lat": 51.090044,
+                    "max_lon": -114.247934,
+                    "time": 14.747,
+                    "length": 0.132,
+                    "cost": 22.234
+                },
+                "status_message": "Found route between points",
+                "status": 0,
+                "units": "kilometers",
+                "language": "en-US"
+            }
+        },
+        {
+            "trip": {
+                "locations": [
+                    {
+                        "type": "via",
+                        "lat": 51.090542,
+                        "lon": -114.249378,
+                        "original_index": 0
+                    },
+                    {
+                        "type": "via",
+                        "lat": 51.09299,
+                        "lon": -114.236792,
+                        "original_index": 0
+                    }
+                ],
+                "legs": [
+                    {
+                        "maneuvers": [
+                            {
+                                "type": 1,
+                                "instruction": "Drive northwest on Valley Ridge Boulevard NW.",
+                                "verbal_succinct_transition_instruction": "Drive northwest. Then, in 100 meters, Turn right onto Valley Ridge Drive NW.",
+                                "verbal_pre_transition_instruction": "Drive northwest on Valley Ridge Boulevard NW. Then, in 100 meters, Turn right onto Valley Ridge Drive NW.",
+                                "verbal_post_transition_instruction": "Continue for 100 meters.",
+                                "street_names": [
+                                    "Valley Ridge Boulevard NW"
+                                ],
+                                "time": 7.024,
+                                "length": 0.097,
+                                "cost": 11.648,
+                                "begin_shape_index": 0,
+                                "end_shape_index": 4,
+                                "verbal_multi_cue": true,
+                                "travel_mode": "drive",
+                                "travel_type": "bus"
+                            },
+                            {
+                                "type": 10,
+                                "instruction": "Turn right onto Valley Ridge Drive NW.",
+                                "verbal_transition_alert_instruction": "Turn right onto Valley Ridge Drive NW.",
+                                "verbal_succinct_transition_instruction": "Turn right.",
+                                "verbal_pre_transition_instruction": "Turn right onto Valley Ridge Drive NW.",
+                                "verbal_post_transition_instruction": "Continue for 700 meters.",
+                                "street_names": [
+                                    "Valley Ridge Drive NW"
+                                ],
+                                "time": 48.819,
+                                "length": 0.68,
+                                "cost": 74.691,
+                                "begin_shape_index": 4,
+                                "end_shape_index": 23,
+                                "travel_mode": "drive",
+                                "travel_type": "bus"
+                            },
+                            {
+                                "type": 10,
+                                "instruction": "Turn right onto Valley Springs Road NW.",
+                                "verbal_transition_alert_instruction": "Turn right onto Valley Springs Road NW.",
+                                "verbal_succinct_transition_instruction": "Turn right.",
+                                "verbal_pre_transition_instruction": "Turn right onto Valley Springs Road NW.",
+                                "verbal_post_transition_instruction": "Continue for 400 meters.",
+                                "street_names": [
+                                    "Valley Springs Road NW"
+                                ],
+                                "time": 51.103,
+                                "length": 0.437,
+                                "cost": 76.048,
+                                "begin_shape_index": 23,
+                                "end_shape_index": 32,
+                                "travel_mode": "drive",
+                                "travel_type": "bus"
+                            },
+                            {
+                                "type": 4,
+                                "instruction": "You have arrived at your destination.",
+                                "verbal_transition_alert_instruction": "You will arrive at your destination.",
+                                "verbal_pre_transition_instruction": "You have arrived at your destination.",
+                                "time": 0.0,
+                                "length": 0.0,
+                                "cost": 0.0,
+                                "begin_shape_index": 32,
+                                "end_shape_index": 32,
+                                "travel_mode": "drive",
+                                "travel_type": "bus"
+                            }
+                        ],
+                        "summary": {
+                            "has_time_restrictions": false,
+                            "has_toll": false,
+                            "has_highway": false,
+                            "has_ferry": false,
+                            "min_lat": 51.090716,
+                            "min_lon": -114.249342,
+                            "max_lat": 51.094159,
+                            "max_lon": -114.236362,
+                            "time": 106.948,
+                            "length": 1.214,
+                            "cost": 162.388
+                        },
+                        "shape": "wpim`Bdme|xE_C|BgLhHiGzBeYpGsDoBsHkBuAe@cBsB{DcOy@aO[oI]yX\\ix@Rku@oA_Ht@c|@kAaj@eFsc@_Nq^qSoQak@s`@kUsPaUcU`x@koBnNsg@x@kHzCg^lAeXXaTk@aW}AaZ}Jcv@"
+                    }
+                ],
+                "summary": {
+                    "has_time_restrictions": false,
+                    "has_toll": false,
+                    "has_highway": false,
+                    "has_ferry": false,
+                    "min_lat": 51.090716,
+                    "min_lon": -114.249342,
+                    "max_lat": 51.094159,
+                    "max_lon": -114.236362,
+                    "time": 106.948,
+                    "length": 1.214,
+                    "cost": 162.388
+                },
+                "status_message": "Found route between points",
+                "status": 0,
+                "units": "kilometers",
+                "language": "en-US"
+            }
+        },
+        {
+            "trip": {
+                "locations": [
+                    {
+                        "type": "via",
+                        "lat": 51.092937,
+                        "lon": -114.237035,
+                        "original_index": 0
+                    },
+                    {
+                        "type": "via",
+                        "lat": 51.09075,
+                        "lon": -114.259029,
+                        "original_index": 0
+                    }
+                ],
+                "legs": [
+                    {
+                        "maneuvers": [
+                            {
+                                "type": 1,
+                                "instruction": "Drive west on Valley Springs Road NW.",
+                                "verbal_succinct_transition_instruction": "Drive west.",
+                                "verbal_pre_transition_instruction": "Drive west on Valley Springs Road NW.",
+                                "verbal_post_transition_instruction": "Continue for 400 meters.",
+                                "street_names": [
+                                    "Valley Springs Road NW"
+                                ],
+                                "time": 39.876,
+                                "length": 0.386,
+                                "cost": 56.86,
+                                "begin_shape_index": 0,
+                                "end_shape_index": 9,
+                                "travel_mode": "drive",
+                                "travel_type": "bus"
+                            },
+                            {
+                                "type": 15,
+                                "instruction": "Turn left onto Valley Ridge Drive NW.",
+                                "verbal_transition_alert_instruction": "Turn left onto Valley Ridge Drive NW.",
+                                "verbal_succinct_transition_instruction": "Turn left.",
+                                "verbal_pre_transition_instruction": "Turn left onto Valley Ridge Drive NW.",
+                                "verbal_post_transition_instruction": "Continue for 1.5 kilometers.",
+                                "street_names": [
+                                    "Valley Ridge Drive NW"
+                                ],
+                                "time": 100.388,
+                                "length": 1.348,
+                                "cost": 146.225,
+                                "begin_shape_index": 9,
+                                "end_shape_index": 38,
+                                "travel_mode": "drive",
+                                "travel_type": "bus"
+                            },
+                            {
+                                "type": 4,
+                                "instruction": "You have arrived at your destination.",
+                                "verbal_transition_alert_instruction": "You will arrive at your destination.",
+                                "verbal_pre_transition_instruction": "You have arrived at your destination.",
+                                "time": 0.0,
+                                "length": 0.0,
+                                "cost": 0.0,
+                                "begin_shape_index": 38,
+                                "end_shape_index": 38,
+                                "travel_mode": "drive",
+                                "travel_type": "bus"
+                            }
+                        ],
+                        "summary": {
+                            "has_time_restrictions": false,
+                            "has_toll": false,
+                            "has_highway": false,
+                            "has_ferry": false,
+                            "min_lat": 51.090734,
+                            "min_lon": -114.258904,
+                            "max_lat": 51.094159,
+                            "max_lon": -114.237043,
+                            "time": 140.265,
+                            "length": 1.735,
+                            "cost": 203.086
+                        },
+                        "shape": "m|mm`Bffn{xEtAnK|A`Zj@`WY`TmAdX{Cf^y@jHoNrg@ax@joB`UbUjUrP`k@r`@pSnQ~Mp^dFrc@jA`j@u@b|@iB~Gw@xt@g@~p@PjYz@lY|B~_@b@hHl@vJbArNfFjm@vEv]hJj`@zVtz@bIrc@pEpd@hGn|@`Bpi@@ri@Sdc@w@rlAz@hy@"
+                    }
+                ],
+                "summary": {
+                    "has_time_restrictions": false,
+                    "has_toll": false,
+                    "has_highway": false,
+                    "has_ferry": false,
+                    "min_lat": 51.090734,
+                    "min_lon": -114.258904,
+                    "max_lat": 51.094159,
+                    "max_lon": -114.237043,
+                    "time": 140.265,
+                    "length": 1.735,
+                    "cost": 203.086
+                },
+                "status_message": "Found route between points",
+                "status": 0,
+                "units": "kilometers",
+                "language": "en-US"
+            }
+        }
+    ]
+}

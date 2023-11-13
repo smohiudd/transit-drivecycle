@@ -10,8 +10,6 @@ gtfs/gtfs*
 **/node_modules
 **/npm-debug.log
 build
-frontend/
-config.py
 *.lock
 package-lock.json
 calgary/
