@@ -1,6 +1,5 @@
 import json
 import os
-from contextlib import asynccontextmanager
 from typing import List, Optional
 
 import numpy as np
@@ -9,7 +8,6 @@ import requests
 from drivecycle import energy, graph, route
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
-from psycopg_pool import AsyncConnectionPool
 from pydantic import BaseModel
 
 valhalla_host = "http://valhalla:8002"
