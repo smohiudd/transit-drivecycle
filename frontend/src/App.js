@@ -15,7 +15,7 @@ urls.map((file) => {
 
 function App() {
 
-  const [tripId, setTripId] = useState(64318648);
+  const [tripId, setTripId] = useState(64331962);
   const [routeId, setRouteId] = useState('7-20715');
   const [listRoute, setListRoute] = useState([]);
   const [listTrip, setListTrip] = useState([]);
@@ -26,7 +26,8 @@ function App() {
   const [soc, setSoc] = useState([]);
   const [soc_final, setSocFinal] = useState(null);
   const [power_final, setPowerFinal] = useState(null);
-  const [drivecycle_error, setDrivecycleError] = useState(null);
+  const [drivecycle_error, setDrivecycleError] = useState(false);
+  const [line_visbility, setLineVisiblity] = useState("visible");
   const [toggle, setToggle] = useState(null);
   const [distance, setDistance] = useState(null);
   const [time, setTime] = useState(null);
@@ -103,7 +104,7 @@ function App() {
             let distances_ = distances.map(item=>item.shape_dist_traveled*1000)
             let coords_geom = coords.map(item=>[item.shape_pt_lat,item.shape_pt_lon])
     
-            fetch(`/drivecycle_post/`, {
+            fetch(`/drivecycle/`, {
               method: 'POST',
               headers: {
                   'Accept': 'application/json',
@@ -112,10 +113,6 @@ function App() {
               body: JSON.stringify({
                   geom: coords_geom,
                   distances: distances_,
-                  mass: mass,
-                  area: area,
-                  capacity: battery_cap,
-                  aux: aux
               })
             }).then(res => {
                   if (res.ok)return res.json() ;
@@ -124,13 +121,12 @@ function App() {
               .then(data => {
                 setDrivecycle(data.data)
                 setTrace(data.trace)
+                setElevation(data.elv)
                 setAvgSpeed(data.avg_speed)
-                elv ? setElevation(data.elv) : setElevation([])
                 setTime(data.time)
                 setDistance(data.distance)
-                setSoc(data.soc)
-                setSocFinal(data.soc_final)
-                setPowerFinal(data.power)
+                setDrivecycleError(false)
+                setLineVisiblity("visible")
               })
               .catch(()=>{
                 console.log("api error")
@@ -138,22 +134,59 @@ function App() {
                 setDrivecycle([])
                 setElevation([])
                 setSoc([])
-                setTrace([])
+                setLineVisiblity("none")
+                setSocFinal(null)
+                setPowerFinal(null)
+                setDistance(null)
+                setTime(null)
+                setAvgSpeed(null)
               })
-              
-      
+
+
           });
         });
 
       });
     });
+    console.log(tripId)
 
-  }, [tripId, mass, area, aux, battery_cap, elv]);
+  }, [tripId]);
+    
+
+  useEffect(() => {
+
+    fetch(`/energy/`, {
+      method: 'POST',
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+          traj: drivecycle,
+          elv: elv ? elevation : [],
+          mass: mass,
+          area: area,
+          capacity: battery_cap,
+          aux: aux
+        })
+      })
+      .then(res => res.json())
+      .then(data => {
+          setSoc(data.soc)
+          setSocFinal(data.soc_final)
+          setPowerFinal(data.power)
+      })
+    
+    }, [mass, area, aux, battery_cap, elv, elevation, drivecycle])
 
 
   return (
     <div>
-       <Map geom={geom} trace={trace}/>
+       <Map 
+        geom={geom} 
+        trace={trace}
+        error={line_visbility}
+        />
        <Sidebar
         trips={listTrip}
         setTrip={setTripId}

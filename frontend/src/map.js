@@ -21,7 +21,7 @@ export default function Map(props) {
         zoom: zoom,
       });
 
-      map.current.on("load", function () {
+      map.current.on("load", () => {
         map.current.addSource("route", {
           type: "geojson",
           data: null,
@@ -63,8 +63,24 @@ export default function Map(props) {
   
     }, [lng, lat, zoom]);
 
+
+    useEffect(() => {
+      if (props.trace.length == 0) return;
+      
+      let coords = props.trace.map((item) => [
+        item[1],
+        item[0],
+      ]);
+      let line = lineString(coords);
+      map.current.getSource("route_trace").setData(line);
+      let box = bbox(line);
+      map.current.fitBounds(box, { padding: 30 });
+
+    }, [props.trace]);
+
     useEffect(() => {
       if (!props.geom || props.geom.length == 0) return;
+
       let coords = props.geom.map((item) => [
         item.shape_pt_lon,
         item.shape_pt_lat,
@@ -79,17 +95,9 @@ export default function Map(props) {
 
     useEffect(() => {
       if (props.trace.length == 0) return;
+      map.current.setLayoutProperty('route_trace', 'visibility', props.error)
 
-      let coords = props.trace.map((item) => [
-        item[1],
-        item[0],
-      ]);
-      let line = lineString(coords);
-      map.current.getSource("route_trace").setData(line);
-      let box = bbox(line);
-      map.current.fitBounds(box, { padding: 30 });
-
-    }, [props.trace]);
+    },[props.error])
     
     return (
       <div>

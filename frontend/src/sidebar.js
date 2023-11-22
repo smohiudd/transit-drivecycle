@@ -47,7 +47,7 @@ export default function Sidebar(props) {
             <div className="select-arrow"></div>
           </div>
         </span>
-        <div className="select-container mb18">
+        <div className="select-container mb12">
           <select
             className="select select--stroke color-blue"
             value={props.selectedTrip}
@@ -60,6 +60,10 @@ export default function Sidebar(props) {
             ))}
           </select>
           <div className="select-arrow"></div>
+        </div>
+
+        <div style={{visibility: props.error ? 'visible' : 'hidden' }}>
+          <div className="txt-h4 color-blue mb12">Not able to generate drivecycle.</div>
         </div>
 
         <div class='grid'>
@@ -94,7 +98,7 @@ export default function Sidebar(props) {
             </label>
         </div>
 
-        <div className={!props.toggle ? 'hidden' : null} class='mt12'>
+        <div class='mt12'>
 
             <div class='grid'>
                 <div class='col w-1/2 txt-s'>Energy Efficiency</div>

@@ -3,5 +3,6 @@ polyline
 requests
 numpy
 psycopg[binary,pool]
-drivecycle
+drivecycle==0.2.0
 duckdb
+geopandas

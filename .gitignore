@@ -13,3 +13,5 @@ build
 *.lock
 package-lock.json
 calgary/
+*.parquet
+__pycache__
