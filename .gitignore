@@ -15,3 +15,5 @@ package-lock.json
 calgary/
 *.parquet
 __pycache__
+aws
+cdk.out

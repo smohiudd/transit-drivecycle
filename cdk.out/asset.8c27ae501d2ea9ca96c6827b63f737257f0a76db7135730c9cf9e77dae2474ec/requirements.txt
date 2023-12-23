@@ -1,7 +1,0 @@
-fastapi[all]
-polyline
-requests
-numpy
-drivecycle==0.2.0
-duckdb
-geopandas
