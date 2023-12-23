@@ -1,26 +1,23 @@
 services:
   valhalla:
-    container_name: drivecycle-valhalla
-    image: saadiqm.azurecr.io/drivecycle-valhalla
+    container_name: drivecycle-valhalla-prod
+    image: drivecycle-valhalla-prod
     build:
-      context: .
-      dockerfile: valhalla/Dockerfile
+      context: ./valhalla
   drivecycleapi:
-    container_name: drivecycle-api
-    image: saadiqm.azurecr.io/drivecycle-api
+    container_name: drivecycle-api-prod
+    image: drivecycle-api-prod
     build:
-      context: .
-      dockerfile: drivecycleapi/Dockerfile
+      context: ./drivecycleapi
     depends_on:
       - valhalla
   frontend-react-prod:
     container_name: frontend-react-prod
-    image: saadiqm.azurecr.io/frontend-react-prod
+    image: frontend-prod
     ports:
       - 80:80
     build:
-      context: .
-      dockerfile: frontend-react/Dockerfile
+      context: ./frontend
     depends_on:
       - drivecycleapi
     domainname: "drivecycle"
