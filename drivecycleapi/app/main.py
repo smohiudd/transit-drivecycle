@@ -13,7 +13,7 @@ from pydantic import BaseModel
 import geopandas as gpd
 import pandas as pd
 
-valhalla_host = "http://localhost:8002"
+valhalla_host = "http://valhalla:8002"
 
 def strictly_increasing(L):
     return all(L[i] < L[i+1] for i in range(len(L)-1))
