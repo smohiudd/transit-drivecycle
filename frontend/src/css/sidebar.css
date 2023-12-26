@@ -1,12 +1,13 @@
 .sidebar-container {
     position: absolute;
-    width: 475px;
+    width: 425px;
     height: 100%;
     top: 0;
     margin: 0px;
     padding: 20px;
     box-shadow: 5px 5px 15px grey;
     background-color: rgb(236, 236, 236);
+    opacity: .9;
     overflow: scroll
   }
   

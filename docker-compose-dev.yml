@@ -3,7 +3,7 @@ services:
     container_name: drivecycle-valhalla-dev
     build:
       context: .
-      dockerfile: valhalla/Dockerfile
+      dockerfile: valhalla/Dockerfile-dev
     ports:
       - 8002:8002
     volumes:
@@ -37,17 +37,6 @@ services:
       - ./drivecycleapi/app:/code/app
     # command: ["./wait-for-it.sh", "-t", "240", "-h", "database", "-p", "5432", "--", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "81", "--reload"]
     command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "81", "--reload"]
-  frontend-prod:
-    container_name: frontend-prod
-    image: frontend-prod
-    ports:
-      - 80:80
-    build:
-      context: .
-      dockerfile: frontend/Dockerfile
-    depends_on:
-      - drivecycleapi
-      - valhalla
   frontend-dev:
     container_name: frontend-dev
     image: frontend-dev

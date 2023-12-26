@@ -104,7 +104,7 @@
   },
   "mjolnir": {
     "admin": "/custom_files/admin_data/admins.sqlite",
-    "concurrency": "4",
+    "concurrency": "2",
     "data_processing": {
       "allow_alt_name": false,
       "apply_country_overrides": true,

@@ -74,7 +74,7 @@ export default function Map(props) {
       let line = lineString(coords);
       map.current.getSource("route_trace").setData(line);
       let box = bbox(line);
-      map.current.fitBounds(box, { padding: 30 });
+      map.current.fitBounds(box, {top: 25, bottom:25, left: 425, right: 15});
 
     }, [props.trace]);
 
@@ -88,7 +88,7 @@ export default function Map(props) {
       let line = lineString(coords);
       map.current.getSource("route").setData(line);
       let box = bbox(line);
-      map.current.fitBounds(box, { padding: 30 });
+      map.current.fitBounds(box, {top: 25, bottom:25, left: 425, right: 15});
 
     }, [props.geom]);
 

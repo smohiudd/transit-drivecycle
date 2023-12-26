@@ -47,7 +47,7 @@ export default function Sidebar(props) {
             <div className="select-arrow"></div>
           </div>
         </span>
-        <div className="select-container mb12">
+        <div className="select-container mb6">
           <select
             className="select select--stroke color-blue"
             value={props.selectedTrip}
@@ -67,24 +67,24 @@ export default function Sidebar(props) {
         </div>
 
         <div class='grid'>
-            <div class='col w-1/4 txt-s'>Batt. Capacity (kWh)</div>
-            <div class='col w-1/4 txt-s'>Vehicle Mass (kg)</div>
-            <div class='col w-1/4 txt-s'>Frontal Area (m2)</div>
-            <div class='col w-1/4 txt-s'>Aux. Power (kW)</div>
+            <div class='col w-1/4 txt-s'>Batt. Capacity</div>
+            <div class='col w-1/4 txt-s'>Vehicle Mass</div>
+            <div class='col w-1/4 txt-s'>Frontal Area</div>
+            <div class='col w-1/4 txt-s'>Aux. Power</div>
         </div>
 
         <div class='grid grid--gut3 mb12'>
             <div class='col w-1/4 txt-ms'>
-                <input class='input' name="battery_cap" onChange={updateBattCap} placeholder='550' />
+                <input class='input' name="battery_cap" onChange={updateBattCap} placeholder='550 kWh' />
             </div>
             <div class='col w-1/4 txt-ms'>
-                <input class='input' name="mass" onChange={updateMass} placeholder='15000' />
+                <input class='input' name="mass" onChange={updateMass} placeholder='15000 kg' />
             </div>
             <div class='col w-1/4 txt-ms'>
-                <input class='input' name="area" onChange={updateArea} placeholder='10' />
+                <input class='input' name="area" onChange={updateArea} placeholder='10 m2' />
             </div>
             <div class='col w-1/4 txt-ms'>
-                <input class='input' name="aux" onChange={updateAux} placeholder='5' />
+                <input class='input' name="aux" onChange={updateAux} placeholder='5 kWh' />
             </div>
         </div>
 
