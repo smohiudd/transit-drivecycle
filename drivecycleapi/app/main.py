@@ -9,6 +9,7 @@ import requests
 from drivecycle import energy, simplification, route
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
+from psycopg_pool import AsyncConnectionPool
 from pydantic import BaseModel
 import geopandas as gpd
 import pandas as pd
