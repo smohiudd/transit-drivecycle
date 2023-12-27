@@ -7,6 +7,8 @@ from aws_cdk import (
     aws_ecr_assets as ecr,
     aws_iam as  iam,
     aws_logs as logs,
+    aws_route53,
+    aws_route53_targets,
     App, CfnOutput, Stack, Duration
 )
 from constructs import Construct
@@ -194,9 +196,34 @@ class DrivecycleFargate(Stack):
 
         listener.connections.allow_default_port_from_any_ipv4("open to world")
 
+        # Route53
+
+        hosted_zone = aws_route53.HostedZone.from_hosted_zone_attributes(
+            self,
+            "hosted-zone",
+            hosted_zone_id="Z0306137T7P1M1OKL12B",
+            zone_name="transit-drivecycle.com",
+        )
+
+        aws_route53.ARecord(
+            self,
+            "dev-dns-record",
+            zone=hosted_zone,
+            target=aws_route53.RecordTarget.from_alias(aws_route53_targets.LoadBalancerTarget(lb)),
+            record_name="dev",
+        )
+
+
+
         CfnOutput(
             self, "LoadBalancerDNS",
             value=lb.load_balancer_dns_name
+        )
+
+        CfnOutput(
+            self,
+            "transit-dveicycle",
+            value=f"http://dev.transit-drivecycle.com",
         )
 
 app = App()
