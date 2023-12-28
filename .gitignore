@@ -1,16 +1,19 @@
 elevation_data/
 valhalla_tiles/
-notebooks/
-database/
-
+valhalla/data/
+.ipynb_checkpoints/
+transit-drivecycle-pgdata/
+gtfs/gtfs*
 *.tar
 *.pbf
 
 **/node_modules
 **/npm-debug.log
 build
-frontend/
-config.py
 *.lock
 package-lock.json
 calgary/
+*.parquet
+__pycache__
+aws
+cdk.out

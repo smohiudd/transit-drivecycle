@@ -1,12 +1,11 @@
 services:
   valhalla:
     container_name: drivecycle-valhalla-dev
-    image: drivecycle-valhalla-dev
-    ports:
-      - 8002:8002
     build:
       context: .
       dockerfile: valhalla/Dockerfile-dev
+    ports:
+      - 8002:8002
     volumes:
       - ./valhalla/data:/custom_files
     environment:
@@ -27,52 +26,63 @@ services:
       dockerfile: drivecycleapi/Dockerfile-dev
     depends_on:
       - valhalla
+    environment:
+      - POSTGRES_DB=postgis
+      - POSTGRES_USER=username
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_HOST=database
+      - POSTGRES_PORT=5432
+      - SRID=3402
     volumes:
       - ./drivecycleapi/app:/code/app
+    # command: ["./wait-for-it.sh", "-t", "240", "-h", "database", "-p", "5432", "--", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "81", "--reload"]
     command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "81", "--reload"]
-  # frontend-dev:
-  #   container_name: frontend-dev
-  #   image: frontend-dev
-  #   ports:
-  #     - 80:80
-  #   build:
-  #     context: .
-  #     dockerfile: frontend/Dockerfile
-  #   depends_on:
-  #     - drivecycleapi
-  #     - valhalla
-  #   volumes:
-  #     - ./frontend/site:/usr/share/nginx/html
-  #     - ./frontend/default.conf:/etc/nginx/conf.d/default.conf
-  frontend-react-dev:
-    container_name: frontend-react-dev
-    image: frontend-react-dev
+  frontend-dev:
+    container_name: frontend-dev
+    image: frontend-dev
     ports:
       - 3000:3000
     build:
       context: .
       target: development
-      dockerfile: frontend-react/Dockerfile-dev
+      dockerfile: frontend/Dockerfile-dev
     depends_on:
       - drivecycleapi
+      - valhalla
     volumes:
-      - ./frontend-react/src:/app/src
-#   database:
-#     container_name: transit-drivecycle-db
-#     image: transit-drivecycle-db
-#     build:
-#       context: .
-#       dockerfile: database/Dockerfile
-#     environment:
-#       - POSTGRES_USER=username
-#       - POSTGRES_PASSWORD=password
-#       - POSTGRES_DB=postgis
-#     ports:
-#       - "5433:5432"
-#     volumes:
-#       - transit-drivecycle-pgdata:/var/lib/postgresql/data
-# volumes:
-#   transit-drivecycle-pgdata:  
+      - ./frontend/src:/app/src
+  database:
+    container_name: transit-drivecycle-db
+    image: transit-drivecycle-db
+    build:
+      context: .
+      dockerfile: database/Dockerfile
+    environment:
+      - POSTGRES_USER=username
+      - POSTGRES_PASS=password
+      - POSTGRES_DB=postgis
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./transit-drivecycle-pgdata:/var/lib/postgresql
+  gtfs:
+    container_name: transit-drivecycle-gtfs
+    image: transit-drivecycle-gtfs
+    build:
+      context: .
+      dockerfile: gtfs/Dockerfile
+    environment:
+      - PGUSER=username
+      - PGPORT=5432
+      - PGPASSWORD=password
+      - PGHOST=database
+      - PGDATABASE=postgis
+    volumes:
+      - ./gtfs/calgary:/gtfs
+    depends_on:
+      - database
+volumes:
+  transit-drivecycle-pgdata:  
 networks:
   default:
     name: transitdrivecycle-dev-network

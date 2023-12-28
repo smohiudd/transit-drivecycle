@@ -1,42 +1,38 @@
 # Take the official valhalla runner image,
 # remove a few superfluous things and
-# create a new runner image from ubuntu:20.04
+# create a new runner image from ubuntu:22.04
 # with the previous runner's artifacts
-
-FROM valhalla/valhalla:run-latest as builder
+ARG VALHALLA_BUILDER_IMAGE=ghcr.io/valhalla/valhalla:latest
+FROM $VALHALLA_BUILDER_IMAGE as builder
 MAINTAINER Nils Nolde <nils@gis-ops.com>
 
 # remove some stuff from the original image
 RUN cd /usr/local/bin && \
-  preserve="valhalla_service valhalla_build_tiles valhalla_build_config valhalla_build_admins valhalla_build_timezones valhalla_build_elevation valhalla_ways_to_edges valhalla_build_extract" && \
+  preserve="valhalla_service valhalla_build_tiles valhalla_build_config valhalla_build_admins valhalla_build_timezones valhalla_build_elevation valhalla_ways_to_edges valhalla_build_extract valhalla_export_edges valhalla_add_predicted_traffic valhalla_ingest_transit valhalla_convert_transit valhalla_add_landmarks valhalla_build_landmarks" && \
   mv $preserve .. && \
   for f in valhalla*; do rm $f; done && \
   cd .. && mv $preserve ./bin
 
-FROM ubuntu:20.04 as runner_base
+FROM ubuntu:23.04 as runner_base
 MAINTAINER Nils Nolde <nils@gis-ops.com>
 
 RUN apt-get update > /dev/null && \
     export DEBIAN_FRONTEND=noninteractive && \
-    apt-get install -y libboost-program-options1.71.0 libluajit-5.1-2 \
-      libzmq5 libczmq4 spatialite-bin libprotobuf-lite17 sudo \
-      libsqlite3-0 libsqlite3-mod-spatialite libgeos-3.8.0 libcurl4 \
-      python3.8-minimal python3-distutils curl unzip parallel moreutils jq spatialite-bin > /dev/null && \
-    ln -sf /usr/bin/python3.8 /usr/bin/python && \
-    ln -sf /usr/bin/python3.8 /usr/bin/python3
+    apt-get install -y libluajit-5.1-2 \
+      libzmq5 libczmq4 spatialite-bin libprotobuf-lite32 sudo locales \
+      libsqlite3-0 libsqlite3-mod-spatialite libcurl4 \
+      python3.11-minimal python3-distutils curl unzip moreutils jq spatialite-bin python-is-python3 > /dev/null
 
 COPY --from=builder /usr/local /usr/local
-COPY --from=builder /usr/bin/prime_* /usr/bin/
-COPY --from=builder /usr/lib/x86_64-linux-gnu/libprime* /usr/lib/x86_64-linux-gnu/
-  
+COPY --from=builder /usr/lib/python3/dist-packages/valhalla/* /usr/lib/python3/dist-packages/valhalla/
+
 ENV LD_LIBRARY_PATH="/usr/local/lib:${LD_LIBRARY_PATH}"
 # export the True defaults
 ENV use_tiles_ignore_pbf=True
-ENV build_tar=True
-ENV build_elevation=True
+ENV build_elevation=False
 ENV build_admins=False 
 ENV build_time_zones=False
-ENV build_tar=True 
+ENV build_tar=False 
 ENV force_rebuild=False
 
 # what this does:
@@ -52,11 +48,8 @@ RUN groupadd -g ${VALHALLA_GID} valhalla && \
   mkdir /custom_files && \
   if [ $VALHALLA_UID != 59999 ] || [ $VALHALLA_GID != 59999 ]; then chmod 0775 custom_files && chown valhalla:valhalla /custom_files; else usermod -aG sudo valhalla && echo "ALL            ALL = (ALL) NOPASSWD: ALL" >> /etc/sudoers; fi
 
-ENV VALHALLA_UID=${VALHALLA_UID}
-ENV VALHALLA_GID=${VALHALLA_GID}
-
-COPY ./valhalla/scripts/. /valhalla/scripts
-COPY ./valhalla/data /custom_files
+COPY ./scripts /valhalla/scripts
+COPY ./data /custom_files
 
 USER valhalla
 

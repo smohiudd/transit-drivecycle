@@ -2,6 +2,7 @@
 
 # create global variables
 CUSTOM_FILES="/custom_files"
+GTFS_DIR="/gtfs_feeds"
 # if the user requested a path_extension, apply it
 if [[ -n $path_extension ]]; then
   CUSTOM_FILES="${CUSTOM_FILES}/${path_extension}"
@@ -11,12 +12,14 @@ if ! test -d "${CUSTOM_FILES}"; then
 fi
 
 CONFIG_FILE="${CUSTOM_FILES}/valhalla.json"
-TILE_DIR="${CUSTOM_FILES}/valhalla_tiles"
-TILE_TAR="${CUSTOM_FILES}/valhalla_tiles.tar"
+TILE_DIR="${CUSTOM_FILES}/${tileset_name:-valhalla_tiles}"
+TILE_TAR="${CUSTOM_FILES}/${tileset_name:-valhalla_tiles}.tar"
 HASH_FILE="${CUSTOM_FILES}/file_hashes.txt"
 ADMIN_DB="${CUSTOM_FILES}/admin_data/admins.sqlite"
 TIMEZONE_DB="${CUSTOM_FILES}/timezone_data/timezones.sqlite"
 ELEVATION_PATH="${CUSTOM_FILES}/elevation_data"
+TRANSIT_DIR="${CUSTOM_FILES}/transit_tiles"
+TRAFFIC_TAR="${CUSTOM_FILES}/${traffic_name:-traffic}.tar"
 
 maybe_create_dir() {
   if ! test -d $1; then
@@ -70,11 +73,12 @@ download_file() {
   if curl --location --output /dev/null --silent --show-error --head --fail "${1}"; then
     echo ""
     echo "==============================================================="
-    echo " Downloading  ${url}"
+    echo " Downloading  ${1}"
     echo "==============================================================="
-    curl --location -o "${2}" ${url}
+    curl --location -o "${2}" ${1}
   else
-    echo "ERROR: Couldn't download from ${url}."
+    echo "ERROR: Couldn't download from ${1}.
+    "
     exit 1
   fi
 }
