@@ -4,5 +4,4 @@ requests
 numpy
 psycopg[binary,pool]
 drivecycle==0.2.0
-duckdb
 geopandas
