@@ -15,7 +15,7 @@ urls.map((file) => {
 
 function App() {
 
-  const [tripId, setTripId] = useState(64331962);
+  const [tripId, setTripId] = useState(null);
   const [routeId, setRouteId] = useState('7-20715');
   const [listRoute, setListRoute] = useState([]);
   const [listTrip, setListTrip] = useState([]);
@@ -26,6 +26,7 @@ function App() {
   const [soc, setSoc] = useState([]);
   const [soc_final, setSocFinal] = useState(null);
   const [power_final, setPowerFinal] = useState(null);
+  const [power_eff, setPowerEff] = useState(null);
   const [drivecycle_error, setDrivecycleError] = useState(false);
   const [line_visbility, setLineVisiblity] = useState("visible");
   const [toggle, setToggle] = useState(null);
@@ -127,16 +128,19 @@ function App() {
                 setDistance(data.distance)
                 setDrivecycleError(false)
                 setLineVisiblity("visible")
+                setPowerFinal(null)
+                setPowerEff(null)
               })
               .catch(()=>{
                 console.log("api error")
-                setDrivecycleError(true)
+                if (tripId != null) setDrivecycleError(true)
                 setDrivecycle([])
                 setElevation([])
                 setSoc([])
                 setLineVisiblity("none")
                 setSocFinal(null)
                 setPowerFinal(null)
+                setPowerEff(null)
                 setDistance(null)
                 setTime(null)
                 setAvgSpeed(null)
@@ -174,7 +178,9 @@ function App() {
       .then(data => {
           setSoc(data.soc)
           setSocFinal(data.soc_final)
+          setPowerEff(Math.round(((data.power / distance) + Number.EPSILON) * 100) / 100)
           setPowerFinal(data.power)
+          
       })
     
     }, [mass, area, aux, battery_cap, elv, elevation, drivecycle])
@@ -199,6 +205,7 @@ function App() {
         soc={soc}
         soc_final={soc_final}
         power_final={power_final}
+        power_eff={power_eff}
         distance={distance}
         time={time}
         avg_speed={avg_speed}

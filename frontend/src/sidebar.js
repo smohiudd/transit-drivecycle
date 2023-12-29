@@ -107,7 +107,7 @@ export default function Sidebar(props) {
 
 
             <div class='grid'>
-                <div class='col w-1/2'><h2>{Math.round(((props.power_final / props.distance) + Number.EPSILON) * 100) / 100} kWh/m</h2></div>
+                <div class='col w-1/2'><h2>{props.power_eff} kWh/m</h2></div>
                 <div class='col w-1/2 txt-s'><h2>{props.power_final} kWh</h2></div>
             </div>
 
