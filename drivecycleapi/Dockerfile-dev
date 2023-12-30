@@ -7,11 +7,4 @@ WORKDIR /code
 COPY ./drivecycleapi/requirements.txt /code/requirements.txt
 COPY ./scripts/wait-for-it.sh .
 
-
-# RUN pip install -e git+https://github.com/smohiudd/drivecycle.git@50472ce981d18d003146c89febb6ec0a61abdec9#egg=drivecycle
-
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
-
-# COPY ./drivecycleapi/app /code/app
-
-# CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "81"]

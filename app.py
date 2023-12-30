@@ -84,10 +84,10 @@ class DrivecycleFargate(Stack):
             logging=ecs.LogDrivers.aws_logs(
                 stream_prefix="valhalla", log_retention=logs.RetentionDays.ONE_WEEK
             ),
-            health_check=ecs.HealthCheck(
-                command=["CMD-SHELL", "curl -f http://localhost:8002/status || exit 1"],
-                start_period=Duration.minutes(1),
-            ),
+            # health_check=ecs.HealthCheck(
+            #     command=["CMD-SHELL", "curl -f http://localhost:8002/status || exit 1"],
+            #     start_period=Duration.minutes(1),
+            # ),
         )
 
         valhalla_fargate_service = ecs.FargateService(

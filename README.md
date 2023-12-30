@@ -34,6 +34,14 @@ docker compose -f docker-compose-dev.yml up frontend-dev
 docker compose up
 ```
 
+In a production environment Valhalla tiles must be built before copying to the production Valhalla container. The following should be included in Valhalla:
+
+```
+valhalla/
+    elevation_data/
+    valhalla_tiles.tar
+```
+
 ### Deploy Using AWS Fargate
 
 CDK is used to deploy to AWS Fargate. To install deploy python requirements, run:
@@ -47,3 +55,7 @@ And then the following to deploy to AWS:
 ```
 cdk deploy
 ```
+
+#### AWS Architecture
+
+The project uses a micro services architecture deployed to ECS using Fargate with a separate task definitions for each service. [Service Connect](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-connect.html) is used for for inter container networking using hostnames similar to Docker networks. A single Application Load Balancer is used to route traffic.

@@ -1,7 +1,5 @@
 import json
-import os
-from contextlib import asynccontextmanager
-from typing import List, Optional
+from typing import List
 
 import geopandas as gpd
 import numpy as np
@@ -9,9 +7,7 @@ import pandas as pd
 import polyline
 import requests
 from drivecycle import energy, route, simplification
-from fastapi import FastAPI, HTTPException, Request
-from fastapi.middleware.cors import CORSMiddleware
-from psycopg_pool import AsyncConnectionPool
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
 valhalla_host = "http://valhalla:8002"
