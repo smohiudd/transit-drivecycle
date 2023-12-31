@@ -27,7 +27,9 @@ export default function Sidebar(props) {
 
   return (
     <div className="sidebar-container prose">
-      <h1 className="color-blue">Transit Drivecycle</h1>
+      <h2 className="color-blue">Transit Drivecycle</h2>
+      <p className="color-blue txt-ms">This app uses <a href="https://github.com/smohiudd/drivecycle">Drivecycle</a> to dynamically generate speed profiles and energy consumption of bus routes.
+      See the <a href="https://github.com/smohiudd/transit-drivecycle">github repo</a> for more info on how this app is deployed. </p>
       
 
       <div className="flex flex--column">
@@ -63,7 +65,7 @@ export default function Sidebar(props) {
         </div>
 
         <div style={{visibility: props.error ? 'visible' : 'hidden' }}>
-          <div className="txt-h4 color-blue mb12">Not able to generate drivecycle.</div>
+          <div className="txt-h5 color-blue mb12 align-center animation-fade-in-out animation--infinite">Not able to generate speed (No Trace).</div>
         </div>
 
         <div class='grid'>
@@ -89,12 +91,12 @@ export default function Sidebar(props) {
         </div>
 
         <div>
-            <label>
+            <label className="txt-ms">
                 <input
                     type="checkbox"
                     checked={props.elv}
                     onChange={updateElv} />
-                Include Elevation
+                 Include Elevation
             </label>
         </div>
 
@@ -107,8 +109,8 @@ export default function Sidebar(props) {
 
 
             <div class='grid'>
-                <div class='col w-1/2'><h2>{props.power_eff} kWh/m</h2></div>
-                <div class='col w-1/2 txt-s'><h2>{props.power_final} kWh</h2></div>
+                <div class='col w-1/2'><h3>{props.power_eff} kWh/m</h3></div>
+                <div class='col w-1/2 txt-s'><h3>{props.power_final} kWh</h3></div>
             </div>
 
             <div class='grid mt12'>
@@ -118,8 +120,8 @@ export default function Sidebar(props) {
 
 
             <div class='grid'>
-                <div class='col w-1/2'><h2>{props.soc_final}%</h2></div>
-                <div class='col w-1/2 txt-s'><h2>{props.avg_speed} km/h</h2></div>
+                <div class='col w-1/2'><h3>{props.soc_final}%</h3></div>
+                <div class='col w-1/2 txt-s'><h3>{props.avg_speed} km/h</h3></div>
             </div>
 
 
@@ -130,8 +132,8 @@ export default function Sidebar(props) {
 
 
             <div class='grid'>
-                <div class='col w-1/2'><h2>{props.distance} km</h2></div>
-                <div class='col w-1/2 txt-s'><h2>{props.time} mins</h2></div>
+                <div class='col w-1/2'><h3>{props.distance} km</h3></div>
+                <div class='col w-1/2 txt-s'><h3>{props.time} mins</h3></div>
             </div>
         </div>
 

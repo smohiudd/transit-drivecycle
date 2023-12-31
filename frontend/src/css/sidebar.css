@@ -1,13 +1,26 @@
+
 .sidebar-container {
-    position: absolute;
-    width: 425px;
-    height: 100%;
-    top: 0;
-    margin: 0px;
-    padding: 20px;
-    box-shadow: 5px 5px 15px grey;
-    background-color: rgb(236, 236, 236);
-    opacity: .9;
-    overflow: scroll
+  position: absolute;
+  width: 100%;
+  height: 55%;
+  bottom: 0;
+  padding: 10px;
+  margin:5px;
+  background-color: rgb(236, 236, 236);
+  overflow: scroll
+}
+
+@media screen and (min-width: 475px) {
+  .sidebar-container {
+      position: absolute;
+      width: 425px;
+      height: 100%;
+      bottom: 0;
+      margin: 0px;
+      padding: 20px;
+      box-shadow: 5px 5px 15px grey;
+      background-color: rgb(236, 236, 236);
+      opacity: .9;
+      overflow: scroll
+    }
   }
-  
