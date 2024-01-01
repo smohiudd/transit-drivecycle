@@ -1,11 +1,12 @@
 
 .sidebar-container {
   position: absolute;
-  height: 55%;
+  height: 45%;
   bottom: 0;
   padding: 10px;
   margin:8px;
   background-color: rgb(236, 236, 236);
+  box-shadow: 2px 2px 5px grey;
   overflow: scroll
 }
 
@@ -16,6 +17,7 @@
   padding: 10px;
   margin:8px;
   background-color: rgb(236, 236, 236);
+  box-shadow: 2px 2px 5px grey;
   overflow: scroll
 }
 
@@ -35,8 +37,12 @@
       box-shadow: 5px 5px 15px grey;
       background-color: rgb(236, 236, 236);
       opacity: .9;
-      overflow: scroll;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      scrollbar-color: rgb(184, 184, 184) rgb(236, 236, 236);
+      scrollbar-width: thin;
     }
+
   .sidebar-container-full {
     position: absolute;
     top:0;
@@ -47,7 +53,10 @@
     box-shadow: 5px 5px 15px grey;
     background-color: rgb(236, 236, 236);
     opacity: .9;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-color: rgb(184, 184, 184) rgb(236, 236, 236);
+    scrollbar-width: thin;
   }
 
   .show-button {

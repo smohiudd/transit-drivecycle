@@ -33,7 +33,7 @@ export default function Sidebar(props) {
     <div className={props.drawer ? "sidebar-container prose" : "sidebar-container-full prose"}>
       <div id="button-visibility" className="show-button">
         
-        <button onClick={toggleDrawer} className='btn btn--s'>{props.drawer ? "Click to Expand" : "Click to Collapse"}</button>
+        <button onClick={toggleDrawer} className='btn btn--green btn--s'>{props.drawer ? "Click to Expand" : "Click to Collapse"}</button>
       </div>
       
       <div className="txt-h1 color-blue mt12 mb6">Transit Drivecycle</div>
@@ -74,7 +74,7 @@ export default function Sidebar(props) {
         </div>
 
         <div style={{visibility: props.error ? 'visible' : 'hidden' }}>
-          <div className="txt-h5 color-blue mb6 align-center animation-fade-in-out animation--infinite">Not able to generate speed (No Trace).</div>
+          <div className="txt-h5 color-orange mb6 align-center animation-fade-in-out animation--infinite">Not able to generate speed (No Trace).</div>
         </div>
 
         <div class='grid'>
