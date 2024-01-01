@@ -1,26 +1,56 @@
 
 .sidebar-container {
   position: absolute;
-  width: 100%;
   height: 55%;
   bottom: 0;
   padding: 10px;
-  margin:5px;
+  margin:8px;
   background-color: rgb(236, 236, 236);
   overflow: scroll
 }
 
+.sidebar-container-full {
+  position: absolute;
+  height: 95%;
+  bottom: 0;
+  padding: 10px;
+  margin:8px;
+  background-color: rgb(236, 236, 236);
+  overflow: scroll
+}
+
+.show-button {
+  display: block;
+}
+
 @media screen and (min-width: 475px) {
+
   .sidebar-container {
       position: absolute;
       width: 425px;
-      height: 100%;
-      bottom: 0;
-      margin: 0px;
+      top:0;
+      height:95%;
+      margin: 15px 15px 15px 15px;
       padding: 20px;
       box-shadow: 5px 5px 15px grey;
       background-color: rgb(236, 236, 236);
       opacity: .9;
-      overflow: scroll
+      overflow: scroll;
     }
+  .sidebar-container-full {
+    position: absolute;
+    top:0;
+    height: 95%;
+    width: 425px;
+    margin: 15px 15px 15px 15px;
+    padding: 20px;
+    box-shadow: 5px 5px 15px grey;
+    background-color: rgb(236, 236, 236);
+    opacity: .9;
+    overflow: scroll;
   }
+
+  .show-button {
+    display: none;
+  }
+}

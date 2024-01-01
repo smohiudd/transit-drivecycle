@@ -24,10 +24,19 @@ export default function Sidebar(props) {
     console.log("toggled")
     props.setElv(e => !e)
   }
+  const toggleDrawer = () => {
+    props.setDrawer(e => !e); 
+   };
 
   return (
-    <div className="sidebar-container prose">
-      <h2 className="color-blue">Transit Drivecycle</h2>
+    
+    <div className={props.drawer ? "sidebar-container prose" : "sidebar-container-full prose"}>
+      <div id="button-visibility" className="show-button">
+        
+        <button onClick={toggleDrawer} className='btn btn--s'>{props.drawer ? "Click to Expand" : "Click to Collapse"}</button>
+      </div>
+      
+      <div className="txt-h1 color-blue mt12 mb6">Transit Drivecycle</div>
       <p className="color-blue txt-ms">This app uses <a href="https://github.com/smohiudd/drivecycle">Drivecycle</a> to dynamically generate speed profiles and energy consumption of bus routes.
       See the <a href="https://github.com/smohiudd/transit-drivecycle">github repo</a> for more info on how this app is deployed. </p>
       
@@ -65,7 +74,7 @@ export default function Sidebar(props) {
         </div>
 
         <div style={{visibility: props.error ? 'visible' : 'hidden' }}>
-          <div className="txt-h5 color-blue mb12 align-center animation-fade-in-out animation--infinite">Not able to generate speed (No Trace).</div>
+          <div className="txt-h5 color-blue mb6 align-center animation-fade-in-out animation--infinite">Not able to generate speed (No Trace).</div>
         </div>
 
         <div class='grid'>
@@ -113,7 +122,7 @@ export default function Sidebar(props) {
                 <div class='col w-1/2 txt-s'><h3>{props.power_final} kWh</h3></div>
             </div>
 
-            <div class='grid mt12'>
+            <div class='grid mt6'>
                 <div class='col w-1/2 txt-s'>Charge Used</div>
                 <div class='col w-1/2 txt-s'>Average Speed</div>
             </div>
@@ -125,7 +134,7 @@ export default function Sidebar(props) {
             </div>
 
 
-            <div class='grid mt12'>
+            <div class='grid mt6'>
                 <div class='col w-1/2 txt-s'>Route Distance</div>
                 <div class='col w-1/2 txt-s'>Run Time</div>
             </div>

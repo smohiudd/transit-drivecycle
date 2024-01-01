@@ -38,6 +38,7 @@ function App() {
   const [mass, setMass] = useState(10000.0);
   const [area, setArea] = useState(8.0);
   const [elv, setElv] = useState(true);
+  const [isDrawer, setDrawer] = useState("false");
 
   //Get all routes
   useEffect(() => {
@@ -222,6 +223,8 @@ function App() {
         elv={elv}
         setElv={setElv}
         error={drivecycle_error}
+        drawer={isDrawer}
+        setDrawer={setDrawer}
         />
     </div>
   );
