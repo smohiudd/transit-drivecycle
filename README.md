@@ -50,7 +50,7 @@ CDK is used to deploy to AWS Fargate. To install deploy python requirements, run
 pip install -r requirements.txt
 ```
 
-And then the following to deploy to AWS:
+After installing the [CDK cli](https://docs.aws.amazon.com/cdk/v2/guide/cli.html), then deploy to AWS using the following:
 
 ```
 cdk deploy
