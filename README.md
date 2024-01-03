@@ -58,4 +58,6 @@ cdk deploy
 
 #### AWS Architecture
 
-The project uses a micro services architecture deployed to ECS using Fargate with a separate task definitions for each service. [Service Connect](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-connect.html) is used for for inter container networking using hostnames similar to Docker networks. A single Application Load Balancer is used to route traffic.
+The project uses a micro services architecture deployed to ECS using Fargate with a separate task definitions for each service. [Service Connect](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-connect.html) is used for for inter-container networking using hostnames similar to Docker networks. A single Application Load Balancer is used to route traffic.
+![transit-drivecycle-architecture](https://github.com/smohiudd/transit-drivecycle/assets/34844565/63e74772-8518-4705-8485-225b39f122b0)
+
