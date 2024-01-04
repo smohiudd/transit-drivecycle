@@ -10,7 +10,7 @@ Transit Drivecycle creates a visualization of bus velocity profiles, energy cons
 
 #### Download OSM Data
 
-Download OSM data from [geofabrik](https://download.geofabrik.de/) and save in `/valhalla/data`. This will be used to generate the routing graph in Valhalla.
+Download OSM data from [geofabrik](https://download.geofabrik.de/) and save in `/valhalla/data`. This will be used to generate the routing graph in Valhalla. If needed you can clip your pbf file using [Osmium](https://osmcode.org/osmium-tool/).
 
 #### Convert GTFS CSV to Parquet
 
@@ -50,7 +50,7 @@ CDK is used to deploy to AWS Fargate. To install deploy python requirements, run
 pip install -r requirements.txt
 ```
 
-After installing the [CDK cli](https://docs.aws.amazon.com/cdk/v2/guide/cli.html), then deploy to AWS using the following:
+After installing the [CDK cli](https://docs.aws.amazon.com/cdk/v2/guide/cli.html), deploy to AWS using the following:
 
 ```
 cdk deploy
