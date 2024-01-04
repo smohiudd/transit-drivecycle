@@ -1,6 +1,6 @@
 ## Transit Drivecyle
 
-Transit Drivecycle creates a visualization of bus velocity profiles, energy consumption and state of charge using the [Drivecycle](https://github.com/smohiudd/drivecycle) python library.
+Transit Drivecycle creates a visualization of bus velocity profiles, energy consumption and state of charge using the [Drivecycle](https://github.com/smohiudd/drivecycle) python library and [OSM data](https://www.openstreetmap.org/#map=2/71.3/-96.8).
 
 ![alt text](./assets/transit-drivecycle.gif)
 
