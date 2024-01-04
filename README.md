@@ -14,7 +14,7 @@ Download OSM data from [geofabrik](https://download.geofabrik.de/) and save in `
 
 #### Convert GTFS CSV to Parquet
 
-Since we are using DuckDb-Wasm for the joining GTFS tables in the browser, we'll need to convert the GTFS csv files to Parquet. See [this notebook](./notebooks/geoparquet.ipynb) for more information on using Pandas to convert csv to Parquet. Parquet files must be stored in and S3 bucket and referenced in `frontend/src/parquet_files.js`
+Since we are using DuckDb-Wasm for the joining GTFS tables in the browser, we'll need to convert the GTFS csv files to Parquet. See [this notebook](./notebooks/geoparquet.ipynb) for more information on using Pandas to convert csv to Parquet. Parquet files must be stored in an S3 bucket and referenced in `frontend/src/parquet_files.js`
 
 #### Optional GTFS Database using `gtfs-postgres`
 
